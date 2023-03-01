@@ -47,20 +47,18 @@
                 <h1 class="h3 mb-3 fw-normal">Regisztráció</h1>
             
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name = "nev2">
+                    <input type="text" class="form-control" id="floatingInput" require placeholder="name@example.com" name="nev2">
                     <label for="floatingInput">Név:</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name = "jelszocska">
+                    <input type="password" class="form-control" id="floatingPassword" require placeholder="Password" name="jelszocska">
                     <label for="floatingPassword">Jelszó:</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name = "jelszocska2">
+                    <input type="password" class="form-control" id="floatingPassword" require placeholder="Password" name="jelszocska2">
                     <label for="floatingPassword">Jelszó újra:</label>
                 </div>
                 <p class="mt-5 mb-3 text-muted">&copy; 2023–2028</p>
-                </form>
-                <form action="" method="post">
                 <button class="w-100 btn btn-lg btn-primary" type="submit" name = "regiszt2">Regisztráció</button>
                 <button type="submit" name="kilep">Vissza a belépéshez!</button>
                 </form>
@@ -71,12 +69,13 @@
             if(isset($_POST["regiszt2"]))
             {
                 $regiszt = new Regisztralas();
-                if(isset($_POST["nev2"])&&isset($_POST["jelszocska"])&&isset($_POST["jelszocska2"]))
+                if(!empty($_POST["nev2"])&&!empty($_POST["jelszocska"])&&!empty($_POST["jelszocska2"]))
                 {
-                $regiszt ->Regist($_POST["nev2"],$_POST["jelszocska"],$_POST["jelszocska2"]);
+                  $regiszt ->Regist($_POST["nev2"],$_POST["jelszocska"],$_POST["jelszocska2"]);
                 }
-                else{
+                else{      
                     print("Valamelyik adat hiányos kérem töltse ki rendesen");
+                    //asd
                 }
             }
             if(isset($_POST["kilep"]))
