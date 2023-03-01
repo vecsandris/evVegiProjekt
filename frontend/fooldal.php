@@ -32,12 +32,21 @@
             <li><a class="dropdown-item" href="#">Galéria</a></li>
           </ul>
         </li>
+        <?php
+          if(isset($_SESSION['nev'])){
+        ?>
         <li class="nav-item">
           <form action="" method="post">
             <button type="submit" class="w-100 btn btn-primary" name = "kilep">Kijelentkezés</button>
           </form>
         </li>
-      </ul>
+        <?php
+          }
+        ?>
+        </ul>
+        <a class="navbar-brand" href="/server/belepes.php">
+          <img src="/kepek/felhaszKepek/Avatar2.jpg" alt="Avatar Logo" style="width:40px;" class="rounded-pill"> 
+        </a>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>

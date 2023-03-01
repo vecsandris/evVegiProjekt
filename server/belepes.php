@@ -12,7 +12,8 @@
         $belepes = $this->csatlakozas->query("SELECT * from felhasznalok where nev = '".$nev."' and jelszo = '".$jelszo."' ");
         if($adat = $belepes->fetch_assoc())
         {  
-           $_SESSION["nev"] = $nev;
+           $_SESSION["nev"] = $adat['nev'];
+           header("Location: ./");
         }
         else
         {
