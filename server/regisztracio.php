@@ -73,10 +73,13 @@
                 $regiszt = new Regisztralas();
                 if(isset($_POST["nev2"])&&isset($_POST["jelszocska"])&&isset($_POST["jelszocska2"]))
                 {
-                $regiszt ->Regist($_POST["nev2"],$_POST["jelszocska"],$_POST["jelszocska2"]);
+                     $regiszt ->Regist($_POST["nev2"],$_POST["jelszocska"],$_POST["jelszocska2"]);
                 }
                 else{
                     print("Valamelyik adat hiányos kérem töltse ki rendesen");
+                    print_r($_POST["nev2"]);
+                    print_r($_POST["jelszocska"]);
+                    print_r($_POST["jelszocska2"])
                 }
             }
             if(isset($_POST["kilep"]))
