@@ -75,7 +75,7 @@
                 }
                 else{      
                     print("Valamelyik adat hiányos kérem töltse ki rendesen");
-                    //asd
+                    //asdas
                 }
             }
             if(isset($_POST["kilep"]))
