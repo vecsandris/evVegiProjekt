@@ -6,6 +6,7 @@
        {
            $this->csatlakozas = new mysqli("localhost","root","","turazas");
        }
+
        function Regist($nev,$jelszo,$jelszo2)
        {
 
@@ -66,12 +67,14 @@
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
           <?php
           //regisztráció ellenőrzése
+
+            $regiszt = new Regisztralas();
             if(isset($_POST["regiszt2"]))
             {
                 $regiszt = new Regisztralas();
-                if(!empty($_POST["nev2"])&&!empty($_POST["jelszocska"])&&!empty($_POST["jelszocska2"]))
+                if(isset($_POST["nev2"])&&isset($_POST["jelszocska"])&&isset($_POST["jelszocska2"]))
                 {
-                     $regiszt ->Regist($_POST["nev2"],$_POST["jelszocska"],$_POST["jelszocska2"]);
+                $regiszt ->Regist($_POST["nev2"],$_POST["jelszocska"],$_POST["jelszocska2"]);
                 }
                 else{      
                     print("Valamelyik adat hiányos kérem töltse ki rendesen");
