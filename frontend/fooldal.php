@@ -9,6 +9,13 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body style = "display: inherit; padding-top: 0; padding-bottom: 0;">
+<style>
+  img
+  {
+    height: 40%;
+    width: 40%;
+  }
+  </style>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Ytravel</a>
@@ -47,11 +54,78 @@
 </nav>
 
 <?php
+if(!isset($_GET['id'])&&!isset($_GET['tura_id']))
+{
+$megyelekerd = new Megye();
+$megyelekerd ->MegyeKiiras();
+}
+
+?>
+<?php
   if(isset($_POST["kilep"]))
   {   session_unset();
       session_destroy();
       header("Location: ../index.php");
   }
+?>
+<?php
+    class Megye
+    {
+    public mysqli $csatlakozas;
+    function __construct()
+    {
+        $this->csatlakozas = new mysqli("localhost","root","","turazas");
+    }
+    function MegyeKiiras()
+    {
+        $tartatlom = "";
+        print("<div>");
+        $belepes = $this->csatlakozas->query("SELECT * from megye");
+        while($adat = $belepes->fetch_assoc())
+        {  
+           $tartatlom .= ''.$adat["megye_nev"].'<br>
+           Turák száma: '.$adat["turak_szama"].'<br>
+           Felkapotság: '.$adat["megye_felkapottsag"].'<br>
+           <a href="?id='.$adat["id"].'"> <img src=../kepek/'.$adat["megye_kep_nev"].'.png></a><br>
+           ';
+           
+        }
+        print("</div>");
+        print($tartatlom);
+    }
+  }
+  class Turak
+    {
+    public mysqli $csatlakozas;
+    function __construct()
+    {
+        $this->csatlakozas = new mysqli("localhost","root","","turazas");
+    }
+    function Turakiiras($megyeid)
+    {
+        $tartatlom = "";
+        print("<div>");
+        $belepes = $this->csatlakozas->query("SELECT * from turak where megye_id = '".$megyeid."'");
+        while($adat = $belepes->fetch_assoc())
+        {  
+            $tartatlom .= ''.$adat["tura_nev"].'<br>
+            Tura hossza: '.$adat["tura_hossza"].' km<br>
+            Tura nehezseg: '.$adat["tura_nehezseg"].'<br>
+            Felkapotság: '.$adat["tura_felkapottsag"].'<br>
+            <a href="?tura_id='.$adat["id"].'"> <img src=../kepektura/'.$adat["tura_kep_nev"].'.jpg></a><br >
+            ';
+           
+        }
+        print("</div>");
+        print($tartatlom);
+    }
+  }
+
+if(isset($_GET['id']))
+{
+$turalekerd = new Turak();
+$turalekerd ->Turakiiras($_GET['id']);
+}
 ?>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Már 01. 14:08
+-- Létrehozás ideje: 2023. Már 08. 14:11
 -- Kiszolgáló verziója: 10.4.14-MariaDB
 -- PHP verzió: 7.4.11
 
@@ -61,25 +61,25 @@ CREATE TABLE `megye` (
 --
 
 INSERT INTO `megye` (`id`, `megye_nev`, `turak_szama`, `megye_felkapottsag`, `megye_kep_nev`) VALUES
-(1, 'Pest Vármegye', 8, 64, 'pestvarmegye'),
-(2, 'Tolna Vármegye', 19, 32, 'tolnavarmegye'),
-(3, 'Heves Vármegye', 6, 24, 'hevesvarmegye'),
-(4, 'Veszprém Vármegye\n', 13, 84, 'veszpremvarmegye'),
-(5, 'Bács-Kiskun Vármegye', 7, 43, 'bacskiskunvarmegye'),
-(6, 'Baranya Vármegye', 8, 19, 'baranyavarmegye'),
-(7, 'Békés Vármegye', 12, 34, 'bekesvarmegye'),
-(8, 'Borsod-Abaúj-Zemplén Vármegye', 17, 70, 'borsodabaujzemplenvarmegye'),
-(9, 'Csongrád-Csanád Vármegye', 6, 30, 'csongradcsanadvarmegye'),
-(10, 'Fejér Vármegye', 10, 69, 'fejervarmegye'),
-(11, 'Győr-Moson-Sopron Vármegye', 15, 40, 'gyormosonsopronvarmegye'),
+(1, 'Pest Vármegye', 3, 64, 'pestvarmegye'),
+(2, 'Tolna Vármegye', 3, 32, 'tolnavarmegye'),
+(3, 'Heves Vármegye', 3, 24, 'hevesvarmegye'),
+(4, 'Veszprém Vármegye\n', 3, 84, 'veszpremvarmegye'),
+(5, 'Bács-Kiskun Vármegye', 3, 43, 'bacskiskunvarmegye'),
+(6, 'Baranya Vármegye', 3, 19, 'baranyavarmegye'),
+(7, 'Békés Vármegye', 3, 34, 'bekesvarmegye'),
+(8, 'Borsod-Abaúj-Zemplén Vármegye', 3, 70, 'borsodabaujzemplenvarmegye'),
+(9, 'Csongrád-Csanád Vármegye', 3, 30, 'csongradcsanadvarmegye'),
+(10, 'Fejér Vármegye', 3, 69, 'fejervarmegye'),
+(11, 'Győr-Moson-Sopron Vármegye', 3, 40, 'gyormosonsopronvarmegye'),
 (12, 'Hajdú-Bihar Vármegye', 3, 10, 'hajdubiharvarmegye'),
-(13, 'Jász-Nagykun-Szolnok Vármegye', 7, 34, 'jasznagykunszolnokvarmegye'),
-(14, 'Komárom-Esztergom Vármegye', 17, 76, 'komaromesztergomvarmegye'),
-(15, 'Nógrád Vármegye', 4, 23, 'nogradvarmegye'),
-(16, 'Somogy Vármegye', 6, 34, 'somogyvarmegye'),
-(17, 'Szabolcs-Szatmár-Bereg Vármegye', 4, 21, 'szabolcsszatmarberegvarmegye'),
-(18, 'Vas Vármegye', 5, 24, 'vasvarmegye'),
-(19, 'Zala Vármegye', 10, 65, 'zalavarmegye');
+(13, 'Jász-Nagykun-Szolnok Vármegye', 3, 34, 'jasznagykunszolnokvarmegye'),
+(14, 'Komárom-Esztergom Vármegye', 3, 76, 'komaromesztergomvarmegye'),
+(15, 'Nógrád Vármegye', 3, 23, 'nogradvarmegye'),
+(16, 'Somogy Vármegye', 3, 34, 'somogyvarmegye'),
+(17, 'Szabolcs-Szatmár-Bereg Vármegye', 3, 21, 'szabolcsszatmarberegvarmegye'),
+(18, 'Vas Vármegye', 3, 24, 'vasvarmegye'),
+(19, 'Zala Vármegye', 3, 65, 'zalavarmegye');
 
 -- --------------------------------------------------------
 
