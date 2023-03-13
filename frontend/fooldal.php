@@ -1,3 +1,8 @@
+<?php
+   include("../server/classes.php");
+   $belepes = new Belepes();
+   $nev
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,8 +41,7 @@
         <li class="nav-item">
           <?php
             if(isset($_SESSION['nev'])){
-              $belepes = new Belepes();
-              $nev = $belepes
+
           ?>
             <form action="" method="post">
               <button type="submit" class="w-100 btn btn-primary" name = "kilep">Kijelentkezés</button>
@@ -47,7 +51,7 @@
           ?>
         </li>
       </ul>
-
+      <p><?php if(isset($_SESSION["nev"])){echo $_SESSION["nev"];} ?></p>
       <a class="navbar-brand" href="../server/belepes.php">
         <img src="../kepek/profilKepek/defaultAvatar.svg" alt="Avatar Logo" style="width:40px;" class="rounded-pill"> 
       </a>
