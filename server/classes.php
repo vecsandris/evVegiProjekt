@@ -13,13 +13,13 @@
         $belepes = $this->csatlakozas->query("SELECT * from felhasznalok where nev = '".$nev."' and jelszo = '".$jelszo."' ");
         if($adat = $belepes->fetch_assoc())
         {  
-           $_SESSION["nev"] = $adat['nev'];
+           $_SESSION['nev'] = $adat['nev'];
+           $_SESSION['kepNeve'] = $adat['user_kep_nev'];
            header("Location: ./");
         }
         else
         {
             print("Sikeretlen a belépés probálkozon újra vagy regisztráljon!") ;
-
         }
     }
 }

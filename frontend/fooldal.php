@@ -52,9 +52,24 @@
         </li>
       </ul>
       <p><?php if(isset($_SESSION["nev"])){echo $_SESSION["nev"];} ?></p>
+      <?php
+        if(!isset($_SESSION['nev'])){
+
+        
+      ?>
       <a class="navbar-brand" href="../server/belepes.php">
         <img src="../kepek/profilKepek/defaultAvatar.svg" alt="Avatar Logo" style="width:40px;" class="rounded-pill"> 
       </a>
+      <?php
+      }
+      else{
+      ?>
+      <a class="navbar-brand" href="#">
+        <img src="../kepek/profilKepek/defaultAvatar.svg" alt="Profile" style="width:40px;" class="rounded-pill"> 
+      </a>
+      <?php
+      }
+      ?>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
