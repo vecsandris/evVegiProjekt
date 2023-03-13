@@ -17,7 +17,7 @@
         else
         {
             print("Sikeretlen a belépés probálkozon újra vagy regisztráljon!") ;
-            break;
+        
         }
     }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Már 08. 14:11
+-- Létrehozás ideje: 2023. Már 13. 10:34
 -- Kiszolgáló verziója: 10.4.14-MariaDB
 -- PHP verzió: 7.4.11
 
@@ -84,6 +84,18 @@ INSERT INTO `megye` (`id`, `megye_nev`, `turak_szama`, `megye_felkapottsag`, `me
 -- --------------------------------------------------------
 
 --
+-- Tábla szerkezet ehhez a táblához `megye_leiras`
+--
+
+CREATE TABLE `megye_leiras` (
+  `id` int(20) NOT NULL,
+  `megye_szoveg` varchar(1000) NOT NULL,
+  `megye_id` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Tábla szerkezet ehhez a táblához `turak`
 --
 
@@ -108,7 +120,25 @@ INSERT INTO `turak` (`id`, `tura_nev`, `tura_hossza`, `tura_nehezseg`, `tura_fel
 (4, 'Vulkán túra', 11.1, 56, 23, 18, 'vulkanTura'),
 (5, 'Szent Imre vándorút', 10.0, 36, 13, 18, 'szentimrevandorutTura'),
 (6, 'Forrás túra a Kőszegi hegységben', 26.0, 23, 47, 18, 'forrasTura'),
-(7, 'Gyógynövény-ismeret Fehér-tónál', 4.0, 20, 70, 9, 'fehertoTura');
+(7, 'Gyógynövény-ismeret Fehér-tónál', 4.0, 20, 70, 9, 'fehertoTura'),
+(8, 'Nagy-Kopasz hegy', 10.5, 45, 88, 1, 'nagykopaszhegyTura'),
+(9, 'Dobogókő', 7.5, 76, 68, 1, 'dobogokoTura'),
+(10, 'Kőris-hegy', 5.0, 35, 22, 4, 'korishegyTura'),
+(11, 'Gemenci erdő', 1.6, 20, 40, 2, 'gemencierdoTura'),
+(12, 'Sötétvölgyi körtúra', 11.1, 50, 33, 2, 'sotetvolgyTura'),
+(13, 'Négyszögletű Kerek Erdő tanösvény', 10.9, 26, 10, 2, 'negyszogletukerekerdotanosvenyTura');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `tura_leiras`
+--
+
+CREATE TABLE `tura_leiras` (
+  `id` int(100) NOT NULL,
+  `tura_szoveg` varchar(1000) NOT NULL,
+  `tura_id` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexek a kiírt táblákhoz
@@ -127,9 +157,21 @@ ALTER TABLE `megye`
   ADD PRIMARY KEY (`id`);
 
 --
+-- A tábla indexei `megye_leiras`
+--
+ALTER TABLE `megye_leiras`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- A tábla indexei `turak`
 --
 ALTER TABLE `turak`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- A tábla indexei `tura_leiras`
+--
+ALTER TABLE `tura_leiras`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -149,10 +191,22 @@ ALTER TABLE `megye`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
+-- AUTO_INCREMENT a táblához `megye_leiras`
+--
+ALTER TABLE `megye_leiras`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT a táblához `turak`
 --
 ALTER TABLE `turak`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT a táblához `tura_leiras`
+--
+ALTER TABLE `tura_leiras`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
