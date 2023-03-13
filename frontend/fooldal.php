@@ -57,6 +57,8 @@
       </form>
     </div>
   </div>
+  <img src="../kepek/web/filter-solid.svg" alt="" srcset="">
+  <i class="fa-solid fa-filters"></i>
 </nav>
 
 <?php
