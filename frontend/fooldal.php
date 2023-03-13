@@ -34,9 +34,17 @@
         </li>
         
         <li class="nav-item">
-          <form action="" method="post">
-            <button type="submit" class="w-100 btn btn-primary" name = "kilep">Kijelentkezés</button>
-          </form>
+          <?php
+            if(isset($_SESSION['nev'])){
+              $belepes = new Belepes();
+              $nev = $belepes
+          ?>
+            <form action="" method="post">
+              <button type="submit" class="w-100 btn btn-primary" name = "kilep">Kijelentkezés</button>
+            </form>
+          <?php
+            }
+          ?>
         </li>
       </ul>
 
