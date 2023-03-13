@@ -51,7 +51,7 @@
           ?>
         </li>
       </ul>
-      <p><?php if(isset($_SESSION["nev"])){echo $_SESSION["nev"];} ?></p>
+      <?php if(isset($_SESSION["nev"])){echo $_SESSION["nev"];} ?>
       <?php
         if(!isset($_SESSION['nev'])){
 
@@ -70,8 +70,8 @@
       <?php
       }
       ?>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <form method="post" class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
@@ -79,6 +79,11 @@
 </nav>
 
 <?php
+
+      if(isset($_POST['search'])){
+        echo "SELECT * FROM megye WHERE megye_nev LIKE TRIM('%".$_POST['search']."%')";
+      }
+
   if(isset($_POST["kilep"]))
   {   session_unset();
       session_destroy();

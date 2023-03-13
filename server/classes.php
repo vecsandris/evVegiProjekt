@@ -64,7 +64,34 @@ class Szures{
         $this->csatlakozas = new mysqli("localhost","root","","turazas");
     }
     function SzuroRendszer(){
-        //$adat = $this->csatlakozas->query("SELECT * FROM megye WHERE turak_szama = ".."");
+        //elso szűrő form
+        $elsoSzuroAdat = $this->csatlakozas->query("SELECT * FROM megye WHERE turak_szama =  AND megye_felkapottság =  AND ");
+        //masodik szűrő form
+        //$masodikSzuroAdat = $this->csatlakozas->query("SELECT * FROM megye WHERE turak_szama = ");
+        //harmadik szűrő form
+        //$harmadikSzuroAdat = $this->csatlakozas->query("SELECT * FROM megye WHERE turak_szama = ");
+    }
+}
+
+class Kereses{
+    public mysqli $csatlakozas;
+    function __construct(){
+        $this->csatlakozas = new mysqli("localhost","root","","turazas");
+    }
+    function Kereso($tartalom){
+        //$adat = $this->csatlakozas->query("SELECT * FROM megye INNER JOIN turak ON megye.id = turak.megye_id WHERE megye.megye_nev = '%".$tartalom."%' OR turak.tura_nev = '%".$tartalom."%'");
+        $adat = $this->csatlakozas->query("SELECT * FROM megye WHERE megye_nev LIKE TRIM('%".$tartalom."%')");
+        if($adat->fetch_assoc()){
+            while($sor = $adat->fetch_assoc()){
+                echo $sor['megye_nev']."<br>".$sor['turak.tura_nev'];
+            }
+        }else{
+            $adat = $this->csatlakozas->query("SELECT * FROM turak WHERE tura_nev LIKE TRIM('%".$tartalom."%')");
+
+            while($sor = $adat->fetch_assoc()){
+                echo $sor['tura_nev'];
+            }
+        }
     }
 }
 
