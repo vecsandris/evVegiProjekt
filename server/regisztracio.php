@@ -1,36 +1,5 @@
 <?php
-    class Regisztralas
-    {
-       public mysqli $csatlakozas;
-       function __construct()
-       {
-           $this->csatlakozas = new mysqli("localhost","root","","turazas");
-       }
-
-       function Regist($nev,$jelszo,$jelszo2)
-       {
-
-           $nevcheck = $this->csatlakozas->query("SELECT * from felhasznalok where nev = '".$nev."'");
-           if($adat = $nevcheck->fetch_assoc())
-           {        
-              print("Sikeretlen a regisztrálás már van ilyen felhasználó!");
-           }
-           else
-           {
-               if($jelszo == $jelszo2)
-               {
-                  $regiszralas = $this->csatlakozas->query("INSERT INTO felhasznalok (nev,jelszo) values('".$nev."','".$jelszo."')");
-               }
-               else
-               {
-                   print("Sikeretlen a regisztrálás, nem egyezik meg a két jelszó!");
-                   print("<form action='' method='post'>
-                   <button type='submit' name='kilep'>Kilépés</button></form>");
-               }
-          }
-
-       }
-    }
+    include("classes.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,20 +17,22 @@
                 <h1 class="h3 mb-3 fw-normal">Regisztráció</h1>
             
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" require placeholder="name@example.com" name="nev2">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name = "nev2">
                     <label for="floatingInput">Név:</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" require placeholder="Password" name="jelszocska">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name = "jelszocska">
                     <label for="floatingPassword">Jelszó:</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" require placeholder="Password" name="jelszocska2">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name = "jelszocska2">
                     <label for="floatingPassword">Jelszó újra:</label>
                 </div>
                 <p class="mt-5 mb-3 text-muted">&copy; 2023–2028</p>
-                <button class="w-100 btn btn-lg btn-primary" type="submit" name = "regiszt2">Regisztráció</button>
-                <button type="submit" name="kilep">Vissza a belépéshez!</button>
+                </form>
+                <form action="" method="post">
+                    <button class="w-100 btn btn-lg btn-primary" type="submit" name = "regiszt2">Regisztráció</button>
+                    <button type="submit" name="kilep">Vissza a belépéshez!</button>
                 </form>
           </main>
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
@@ -71,14 +42,12 @@
             $regiszt = new Regisztralas();
             if(isset($_POST["regiszt2"]))
             {
-                $regiszt = new Regisztralas();
                 if(isset($_POST["nev2"])&&isset($_POST["jelszocska"])&&isset($_POST["jelszocska2"]))
                 {
-                $regiszt ->Regist($_POST["nev2"],$_POST["jelszocska"],$_POST["jelszocska2"]);
+                    $regiszt ->Regist($_POST["nev2"],$_POST["jelszocska"],$_POST["jelszocska2"]);
                 }
-                else{      
+                else{
                     print("Valamelyik adat hiányos kérem töltse ki rendesen");
-                    
                 }
             }
             if(isset($_POST["kilep"]))
