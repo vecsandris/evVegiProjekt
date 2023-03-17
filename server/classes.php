@@ -13,13 +13,13 @@
         $belepes = $this->csatlakozas->query("SELECT * from felhasznalok where nev = '".$nev."' and jelszo = '".$jelszo."' ");
         if($adat = $belepes->fetch_assoc())
         {  
-           $_SESSION['nev'] = $adat['nev'];
-           $_SESSION['kepNeve'] = $adat['user_kep_nev'];
+           $_SESSION["nev"] = $adat['nev'];
            header("Location: ./");
         }
         else
         {
             print("Sikeretlen a belépés probálkozon újra vagy regisztráljon!") ;
+
         }
     }
 }
@@ -66,6 +66,73 @@ class Szures{
     function SzuroRendszer(){
         //$adat = $this->csatlakozas->query("SELECT * FROM megye WHERE turak_szama = ".."");
     }
+}
+class Turak
+    {
+    public mysqli $csatlakozas;
+    function __construct()
+    {
+        $this->csatlakozas = new mysqli("localhost","root","","turazas");
+    }
+    function Turakiiras($megyeid)
+    {
+        $tartatlom = "";
+        print("<div>");
+        $belepes = $this->csatlakozas->query("SELECT * from turak where megye_id = '".$megyeid."'");
+        while($adat = $belepes->fetch_assoc())
+        {  
+            $tartatlom .= '
+            <div class="container text-center">
+                <div class="row">
+                    <div class = "col">
+                        '.$adat["tura_nev"].'<br>
+                        Tura hossza: '.$adat["tura_hossza"].' km<br>
+                        Tura nehezseg: '.$adat["tura_nehezseg"].'<br>
+                        Felkapottság: '.$adat["tura_felkapottsag"].'<br>
+                        <a href="?tura_id='.$adat["id"].'"> <img src=../kepektura/'.$adat["tura_kep_nev"].'.jpg class = "img-fluid"></a><br>
+                    </div>
+                </div>
+            </div>
+            '
+            ;
+           
+        }
+        print("</div>");
+        print($tartatlom);
+    }
+  }
+  class Megye
+  {
+  public mysqli $csatlakozas;
+  function __construct()
+  {
+      $this->csatlakozas = new mysqli("localhost","root","","turazas");
+  }
+  function MegyeKiiras()
+  {
+      $tartatlom = "";
+      print("<div>");
+      $belepes = $this->csatlakozas->query("SELECT * from megye");
+      while($adat = $belepes->fetch_assoc())
+      {  
+         $tartatlom .= '
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <h1>'.$adat["megye_nev"].'</h1>
+                    Turák száma: '.$adat["turak_szama"].'
+                    Felkapottság: '.$adat["megye_felkapottsag"].'
+                    <a href="?id='.$adat["id"].'"> <img src=../kepek/'.$adat["megye_kep_nev"].'.png class = "img-fluid"></a>
+                </div>
+            </div>
+        </div>
+         '
+         ;
+         
+      }
+      print("</div>");
+      print($tartatlom);
+  }
 }
 
 ?>

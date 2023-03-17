@@ -63,6 +63,9 @@ body {
     vertical-align: -.125em;
     fill: currentColor;
   }
+  .navbar{
+    background-color: transparent;
+  }
 
   .nav-scroller {
     position: relative;

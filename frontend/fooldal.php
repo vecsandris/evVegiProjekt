@@ -13,29 +13,25 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="../style.css">
 </head>
-<body style = "display: inherit; padding-top: 0; padding-bottom: 0;">
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<body style = "display: inherit; padding-top: 0; padding-bottom: 0; background-image: url('../kepek/profilKepek/background.png');">
+<nav class="navbar navbar-expand-lg bg-body-tertiary fs-4" style = "width: 100%;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Ytravel</a>
+  <img src="../kepek/profilKepek/logo.png" alt="Oldal logo" style="width:100px;" class="rounded-pill float-start"> 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 float-end">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Főoldal</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Rólunk</a>
+          <a class="nav-link" href="#">Túrák</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Túrák
+          <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Információk
           </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Helyek</a></li>
-            <li><a class="dropdown-item" href="#">Galéria</a></li>
-          </ul>
         </li>
         
         <li class="nav-item">
@@ -52,28 +48,9 @@
         </li>
       </ul>
       <p><?php if(isset($_SESSION["nev"])){echo $_SESSION["nev"];} ?></p>
-      <?php
-        if(!isset($_SESSION['nev'])){
-
-        
-      ?>
       <a class="navbar-brand" href="../server/belepes.php">
-        <img src="../kepek/profilKepek/defaultAvatar.svg" alt="Avatar Logo" style="width:40px;" class="rounded-pill"> 
+        <img src="../kepek/profilKepek/defaultAvatar.svg" alt="Oldal logo" style="width:40px;" class="rounded-pill"> 
       </a>
-      <?php
-      }
-      else{
-      ?>
-      <a class="navbar-brand" href="#">
-        <img src="../kepek/profilKepek/defaultAvatar.svg" alt="Profile" style="width:40px;" class="rounded-pill"> 
-      </a>
-      <?php
-      }
-      ?>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
     </div>
   </div>
 </nav>
