@@ -30,7 +30,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link text-white" href="#">
-            Információk
+            Info
           </a>
         </li>
       </ul>
