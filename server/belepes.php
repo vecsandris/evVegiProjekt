@@ -25,7 +25,7 @@
                     <label for="floatingPassword">Jelszó:</label>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary" type="submit" name = "belep">Belépés</button>
-                <p class="mt-5 mb-3 text-muted">&copy; 2023–2028</p>
+                <p class="mt-5 mb-3 text-muted">Ytravel &copy; 2023-2028</p>
                 </form>
                 <form action="" method="post">
                 <button class="w-100 btn btn-lg btn-primary" type="submit" name = "regiszt">Regisztráció</button>
