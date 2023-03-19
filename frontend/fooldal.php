@@ -28,8 +28,8 @@
         <li class="nav-item">
           <a class="nav-link text-white" href="#">Túrák</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#">
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="../frontend/informaciok.php" role="button" aria-expanded="false">
             Információk
           </a>
         </li>
