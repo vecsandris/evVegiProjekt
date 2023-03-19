@@ -71,6 +71,20 @@
   </form>
 </div>
 
+<div class = "text-white position-absolute bottom-50 end-50 m-5">
+  <h1 style = "font-size: 60px">Találd meg kedvenc túra útvonalad.</h1>
+  <form action="" method="post">
+      <button class = "btn text-white">Felfedezés</button>
+  </form>
+</div>
+
+<div class = "text-white position-absolute bottom-50 end-50 m-5">
+  <h1 style = "font-size: 60px">Találd meg kedvenc túra útvonalad.</h1>
+  <form action="" method="post">
+      <button class = "btn text-white">Felfedezés</button>
+  </form>
+</div>
+
 <?php
   if(isset($_POST["kilep"]))
   {   session_unset();
