@@ -11,6 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ytravel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -82,8 +83,8 @@
         <footer style="background-color: #14532D; color: white; text-align:center; position: absolute; bottom:0; width:100%; padding-top:20px;">
             <div class="row">
                 <div class="col">
-                    <i class="bi bi-telephone-fill"><img src="../kepek/profilKepek/telephone-fill.svg" alt="mail">+11 111 111 1111</i><br>
-                    <i class="bi bi-envelope-fill"><img src="../kepek/profilKepek/envelope-fill.svg" alt="mail">Ytravel@gmail.com</i>
+                    <i class="bi bi-telephone-fill">+11 111 111 1111</i><br>
+                    <i class="bi bi-envelope-fill">Ytravel@gmail.com</i>
                 </div>
                 <div class="col">
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non ipsum velit, rerum quasi amet nihil facere cum exercitationem dignissimos distinctio dolore cumque dolor ducimus ratione. Voluptate necessitatibus rerum nemo maiores!
@@ -92,7 +93,7 @@
 
             <div class="row">
                 <div class="col">
-                    <p class="mt-5 mb-3 text-light">&copy; 2023–2028</p>
+                    <p class="mt-5 mb-3 text-light">Ytravel &copy; 2023-2028</p>
                 </div>
             </div>
         </footer>
