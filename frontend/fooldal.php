@@ -30,7 +30,7 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link" href="../frontend/informaciok.php" role="button" aria-expanded="false">
-            Információk
+            Információ
           </a>
         </li>
       </ul>
