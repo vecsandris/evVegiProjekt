@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Már 17. 12:25
+-- Létrehozás ideje: 2023. Már 17. 14:00
 -- Kiszolgáló verziója: 10.4.14-MariaDB
 -- PHP verzió: 7.4.11
 
@@ -143,7 +143,18 @@ INSERT INTO `turak` (`id`, `tura_nev`, `tura_hossza`, `tura_nehezseg`, `tura_fel
 (27, 'Hegyestű Geológiai Bemutatóhely', 5.2, 20, 78, 8, 'hegyestugeologiaibemutatohelyTura'),
 (28, 'Smaragdvölgyy', 13.7, 45, 23, 8, 'smaragdvolgyTura'),
 (29, 'Kiskunsági Nemzeti Park', 20.7, 24, 56, 9, 'kiskunsaginemzetiparkTura'),
-(31, 'Bölömbika tanösvény', 3.0, 35, 23, 9, 'bolombikatanosvenyTura');
+(31, 'Bölömbika tanösvény', 3.0, 35, 23, 9, 'bolombikatanosvenyTura'),
+(32, 'Sárkány-tó', 5.7, 20, 10, 10, 'sarkanytoTura'),
+(33, 'Ökoturisztikai Központ', 3.3, 15, 46, 10, 'okoturisztikaikozpontTura'),
+(34, 'Csónakázó-tó', 6.0, 5, 70, 10, 'csonakazotoTura'),
+(35, 'Bakonyszentlászló', 32.0, 87, 45, 11, 'bakonyszentlaszloTura'),
+(36, 'Fertő-Hanság Nemzeti Park', 5.0, 25, 30, 11, 'fertohansagnemzetiparkTura'),
+(37, 'Morotva-tavi tanösvény', 1.5, 15, 10, 11, 'morotvatavitanosvenyTura'),
+(38, 'Gúti erdő', 6.1, 17, 16, 12, 'gutierdoTura'),
+(39, 'Hármashegyi-kilátó', 12.6, 43, 30, 12, 'harmashegyikilatoTura'),
+(40, 'Vekeri-tó', 6.8, 25, 32, 12, 'vekeritoTura'),
+(41, 'Kunhalmok', 10.5, 45, 23, 13, 'kunhalmokTura'),
+(42, 'Tisza-parti Tanösvény', 6.0, 34, 32, 13, 'tiszapartitanosvenyTura');
 
 -- --------------------------------------------------------
 
@@ -217,7 +228,7 @@ ALTER TABLE `megye_leiras`
 -- AUTO_INCREMENT a táblához `turak`
 --
 ALTER TABLE `turak`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT a táblához `tura_leiras`
