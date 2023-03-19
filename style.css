@@ -2,6 +2,8 @@
 html,
 body {
   height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 body {
@@ -62,7 +64,9 @@ body {
 
   .bi {
     vertical-align: -.125em;
-    fill: currentColor;
+  }
+  .navbar{
+    background-color: transparent;
   }
 
   .nav-scroller {
@@ -81,4 +85,7 @@ body {
     text-align: center;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
+  }
+  .navbar-toggler{
+    background-color: #fff;
   }

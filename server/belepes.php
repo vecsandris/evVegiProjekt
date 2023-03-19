@@ -1,26 +1,5 @@
 <?php
-    class Belepes
-    {
-    public mysqli $csatlakozas;
-    function __construct()
-    {
-        $this->csatlakozas = new mysqli("localhost","root","","turazas");
-    }
-    function Login($nev,$jelszo)
-    {
-
-        $belepes = $this->csatlakozas->query("SELECT * from felhasznalok where nev = '".$nev."' and jelszo = '".$jelszo."' ");
-        if($adat = $belepes->fetch_assoc())
-        {  
-           $_SESSION["nev"] = $nev;
-        }
-        else
-        {
-            print("Sikeretlen a belépés probálkozon újra vagy regisztráljon!") ;
-        
-        }
-    }
-}
+    include("classes.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +25,7 @@
                     <label for="floatingPassword">Jelszó:</label>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary" type="submit" name = "belep">Belépés</button>
-                <p class="mt-5 mb-3 text-muted">&copy; 2023–2028</p>
+                <p class="mt-5 mb-3 text-muted">Ytravel &copy; 2023-2028</p>
                 </form>
                 <form action="" method="post">
                 <button class="w-100 btn btn-lg btn-primary" type="submit" name = "regiszt">Regisztráció</button>

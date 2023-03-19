@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Már 13. 10:34
+-- Létrehozás ideje: 2023. Már 17. 14:00
 -- Kiszolgáló verziója: 10.4.14-MariaDB
 -- PHP verzió: 7.4.11
 
@@ -126,7 +126,35 @@ INSERT INTO `turak` (`id`, `tura_nev`, `tura_hossza`, `tura_nehezseg`, `tura_fel
 (10, 'Kőris-hegy', 5.0, 35, 22, 4, 'korishegyTura'),
 (11, 'Gemenci erdő', 1.6, 20, 40, 2, 'gemencierdoTura'),
 (12, 'Sötétvölgyi körtúra', 11.1, 50, 33, 2, 'sotetvolgyTura'),
-(13, 'Négyszögletű Kerek Erdő tanösvény', 10.9, 26, 10, 2, 'negyszogletukerekerdotanosvenyTura');
+(13, 'Négyszögletű Kerek Erdő tanösvény', 10.9, 26, 10, 2, 'negyszogletukerekerdotanosvenyTura'),
+(14, 'Egerszalóki sódomb', 5.2, 25, 27, 3, 'egerszalokisodombTura'),
+(15, 'Fátyol-vízesés', 6.3, 54, 34, 3, 'fatyolvizesesTura'),
+(16, 'Sombokor-kör Kékes hegy', 4.6, 67, 90, 3, 'sombokorkorTura'),
+(17, 'Alpári-rét', 6.2, 20, 11, 5, 'alpariretTura'),
+(18, 'Petőfi-sziget', 2.2, 5, 35, 5, 'petofiszigetTura'),
+(19, 'Pusztatemplom romjai', 12.7, 34, 26, 5, 'pusztatemplomromjaiTura'),
+(20, 'Abaligeti barlang', 1.8, 70, 54, 6, 'abaligetibarlangTura'),
+(21, 'Meleg-mányi-völgy', 15.0, 60, 78, 6, 'melegmanyivolgyTura'),
+(22, 'Váraljai-völgy', 18.4, 78, 23, 6, 'varaljaivolgyTura'),
+(23, 'Mályvádi barangolás', 20.7, 80, 35, 7, 'malyvadibarangolasTura'),
+(24, 'Hársfasor', 3.2, 3, 12, 7, 'harsfasorTura'),
+(25, 'Hantoskerti-holtág', 2.3, 23, 17, 7, 'hantoskertiholtagTura'),
+(26, 'Kőtenger', 10.7, 30, 15, 8, 'kotengerTura'),
+(27, 'Hegyestű Geológiai Bemutatóhely', 5.2, 20, 78, 8, 'hegyestugeologiaibemutatohelyTura'),
+(28, 'Smaragdvölgyy', 13.7, 45, 23, 8, 'smaragdvolgyTura'),
+(29, 'Kiskunsági Nemzeti Park', 20.7, 24, 56, 9, 'kiskunsaginemzetiparkTura'),
+(31, 'Bölömbika tanösvény', 3.0, 35, 23, 9, 'bolombikatanosvenyTura'),
+(32, 'Sárkány-tó', 5.7, 20, 10, 10, 'sarkanytoTura'),
+(33, 'Ökoturisztikai Központ', 3.3, 15, 46, 10, 'okoturisztikaikozpontTura'),
+(34, 'Csónakázó-tó', 6.0, 5, 70, 10, 'csonakazotoTura'),
+(35, 'Bakonyszentlászló', 32.0, 87, 45, 11, 'bakonyszentlaszloTura'),
+(36, 'Fertő-Hanság Nemzeti Park', 5.0, 25, 30, 11, 'fertohansagnemzetiparkTura'),
+(37, 'Morotva-tavi tanösvény', 1.5, 15, 10, 11, 'morotvatavitanosvenyTura'),
+(38, 'Gúti erdő', 6.1, 17, 16, 12, 'gutierdoTura'),
+(39, 'Hármashegyi-kilátó', 12.6, 43, 30, 12, 'harmashegyikilatoTura'),
+(40, 'Vekeri-tó', 6.8, 25, 32, 12, 'vekeritoTura'),
+(41, 'Kunhalmok', 10.5, 45, 23, 13, 'kunhalmokTura'),
+(42, 'Tisza-parti Tanösvény', 6.0, 34, 32, 13, 'tiszapartitanosvenyTura');
 
 -- --------------------------------------------------------
 
@@ -200,7 +228,7 @@ ALTER TABLE `megye_leiras`
 -- AUTO_INCREMENT a táblához `turak`
 --
 ALTER TABLE `turak`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT a táblához `tura_leiras`
