@@ -61,7 +61,7 @@ body {
 
   .bi {
     vertical-align: -.125em;
-    fill: currentColor;
+    background-color: white;
   }
   .navbar{
     background-color: transparent;
@@ -83,4 +83,7 @@ body {
     text-align: center;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
+  }
+  .navbar-toggler{
+    background-color: #fff;
   }

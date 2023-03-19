@@ -53,7 +53,7 @@
             if(isset($_POST["kilep"]))
             {   session_unset();
                 session_destroy();
-                header("Location: ../index.php");
+                header("Location: ./belepes.php");
             }
           ?>
 </body>
