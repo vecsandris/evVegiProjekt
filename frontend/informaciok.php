@@ -16,7 +16,7 @@ $nev
     <link rel="stylesheet" href="../style.css">
 </head>
 
-<body class="d-flex flex-column min-vh-50 w-auto pt-0 pb-0 display-inerhit" style="background-image: url('../kepek/profilKepek/background2.png');">
+<body class="d-flex flex-column pt-0 pb-0 d-inherit" style="background-image: url('../kepek/profilKepek/background2.png');">
     <nav class="navbar navbar-expand-lg bg-body-tertiary fs-4" style="width: 100%;">
         <div class="container-fluid">
             <img src="../kepek/profilKepek/logo.png" alt="Oldal logo" style="width:100px;" class="rounded-pill float-start">
@@ -84,8 +84,8 @@ $nev
             </div>
         </div>
     </div>
-    <footer class="w-100 text-center text-light bg-success mt-auto pt-1">
-        <div class="row">
+    <footer class="text-center text-light bg-success mt-auto pt-1">
+        <div class="row w-100">
             <div class="col-4 col-md-6">
                 <p class="fs-6"><i class="bi bi-telephone-fill p-2"></i>+11 111 111 1111</p>
                 <p class="fs-6"><i class="bi bi-envelope-fill p-2"></i>Ytravel@gmail.com</p>
@@ -95,7 +95,7 @@ $nev
             </div>
         </div>
 
-        <div class="row">
+        <div class="row w-100">
             <div class="col">
                 <p class="mt-1 mb-1 text-light">Ytravel &copy; 2023-2028</p>
             </div>
