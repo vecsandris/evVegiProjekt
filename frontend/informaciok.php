@@ -1,7 +1,7 @@
 <?php
-   include("../server/classes.php");
-   $belepes = new Belepes();
-   $nev
+include("../server/classes.php");
+$belepes = new Belepes();
+$nev
 ?>
 
 <html lang="en">
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 
-<body style="display: inherit; padding-top: 0; padding-bottom: 0; background-image: url('../kepek/profilKepek/background2.png');">
+<body class="d-flex flex-column min-vh-100" style="display: inherit; padding-top: 0; padding-bottom: 0; background-image: url('../kepek/profilKepek/background2.png');">
     <nav class="navbar navbar-expand-lg bg-body-tertiary fs-4" style="width: 100%;">
         <div class="container-fluid">
             <img src="../kepek/profilKepek/logo.png" alt="Oldal logo" style="width:100px;" class="rounded-pill float-start">
@@ -69,39 +69,38 @@
         header("Location: ../index.php");
     }
     ?>
-    <div id="content-wrap">
+    <div class="container text-center position-relative" style="margin-top:10%;">
+        <div class="row">
+            <div class="col col-lg-12 fw-bold">
+                <h1>Információk</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-lg-6">
+                <p class="fs-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem repellat sit, laudantium accusamus porro esse dolorem libero, totam, enim quibusdam odio fugit? Aliquam ipsam dolore neque, deserunt harum mollitia nam.</p>
+            </div>
+            <div class="col col-lg-6">
+                <p class="fs-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, quibusdam aliquam, illo saepe magni delectus libero corporis sed laudantium voluptas quae reiciendis atque animi? Iste quasi eaque odit asperiores aut.</p>
+            </div>
+        </div>
+    </div>
+    <footer class="w-100 text-center text-light bg-success mt-auto pt-3">
+        <div class="row">
+            <div class="col-4 col-md-6">
+                <p class="fs-6"><i class="bi bi-telephone-fill p-2"></i>+11 111 111 1111</p>
+                <p class="fs-6"><i class="bi bi-envelope-fill p-2"></i>Ytravel@gmail.com</p>
+            </div>
+            <div class="col-4 col-md-6">
+                <p class="fs-6">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non ipsum velit, rerum quasi amet nihil facere cum exercitationem dignissimos distinctio dolore cumque dolor ducimus ratione. Voluptate necessitatibus rerum nemo maiores!</p>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col">
-                Információk        
+                <p class="mt-2 mb-2 text-light">Ytravel &copy; 2023-2028</p>
             </div>
         </div>
-        <div class="row" style="text-align:center;">
-            <div class="col">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem repellat sit, laudantium accusamus porro esse dolorem libero, totam, enim quibusdam odio fugit? Aliquam ipsam dolore neque, deserunt harum mollitia nam.
-            </div>
-            <div class="col">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, quibusdam aliquam, illo saepe magni delectus libero corporis sed laudantium voluptas quae reiciendis atque animi? Iste quasi eaque odit asperiores aut.
-            </div>
-        </div>
-
-        <footer class="text-light ">
-            <div class="row">
-                <div class="col">
-                    <i class="bi bi-telephone-fill">+11 111 111 1111</i><br>
-                    <i class="bi bi-envelope-fill">Ytravel@gmail.com</i>
-                </div>
-                <div class="col">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non ipsum velit, rerum quasi amet nihil facere cum exercitationem dignissimos distinctio dolore cumque dolor ducimus ratione. Voluptate necessitatibus rerum nemo maiores!
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <p class="mt-5 mb-3 text-light">Ytravel &copy; 2023-2028</p>
-                </div>
-            </div>
-        </footer>
-    </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 
