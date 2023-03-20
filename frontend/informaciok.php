@@ -70,7 +70,11 @@
     }
     ?>
     <div id="content-wrap">
-
+        <div class="row">
+            <div class="col">
+                Információk        
+            </div>
+        </div>
         <div class="row" style="text-align:center;">
             <div class="col">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem repellat sit, laudantium accusamus porro esse dolorem libero, totam, enim quibusdam odio fugit? Aliquam ipsam dolore neque, deserunt harum mollitia nam.
@@ -80,7 +84,7 @@
             </div>
         </div>
 
-        <footer style="background-color: #14532D; color: white; text-align:center; position: absolute; bottom:0; width:100%; padding-top:20px;">
+        <footer class="text-light ">
             <div class="row">
                 <div class="col">
                     <i class="bi bi-telephone-fill">+11 111 111 1111</i><br>
