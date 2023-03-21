@@ -17,48 +17,43 @@ $nev
 </head>
 
 <body class="d-flex flex-column pt-0 pb-0 d-inherit" style="background-image: url('../kepek/profilKepek/background2.png');">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary fs-4" style="width: 100%;">
-        <div class="container-fluid">
-            <img src="../kepek/profilKepek/logo.png" alt="Oldal logo" style="width:100px;" class="rounded-pill float-start">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 float-end">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../frontend/fooldal.php">Főoldal</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Túrák</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Információk
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <?php
-                        if (isset($_SESSION['nev'])) {
-
-                        ?>
-                            <form action="" method="post">
-                                <button type="submit" class="w-100 btn btn-primary" name="kilep">Kijelentkezés</button>
-                            </form>
-                        <?php
-                        }
-                        ?>
-                    </li>
-                </ul>
-                <p><?php if (isset($_SESSION["nev"])) {
-                        echo $_SESSION["nev"];
-                    } ?></p>
-                <a class="navbar-brand" href="../server/belepes.php">
-                    <img src="../kepek/profilKepek/defaultAvatar.svg" alt="Oldal logo" style="width:40px;" class="rounded-pill">
-                </a>
-            </div>
-        </div>
-    </nav>
+<nav class="navbar navbar-expand-lg fs-4">
+  <div class="container-fluid">
+  <img src="../kepek/profilKepek/logo.png" alt="Oldal logo" style="width:100px;" class="rounded-pill float-start"> 
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse text-center" id = "navbarSupportedContent">
+      <ul class="navbar-collapse navbar-nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link active text-white" href="../frontend/fooldal.php">Főoldal</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="../frontend/turak.php">Túrák</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link text-white" href="../frontend/informaciok.php" role="button" aria-expanded="false">
+            Információ
+          </a>
+        </li>
+          <?php
+                  if(isset($_SESSION['nev'])){
+                ?>
+                  <li class = "nav-item p-2">
+                      <form action="" method="post">
+                        <button type="submit" class="w-100 btn btn-primary" name = "kilep">Kijelentkezés</button>
+                      </form>
+                  </li>
+                  <li class = "nav-item p-2">
+                      <p class = "text-white"><?php print  $_SESSION["nev"];?></p>
+                  </li>
+                <?php
+                  }
+                ?>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 
 
