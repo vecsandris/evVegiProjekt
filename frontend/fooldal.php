@@ -13,30 +13,27 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="../style.css">
 </head>
-<body style = "display: inherit; padding-top: 0; padding-bottom: 0; background-image: url('../kepek/profilKepek/background.png');">
-<nav class="navbar navbar-expand-lg fs-4" style = "width: 100%;">
+<body style = "display: block; padding-top: 0; padding-bottom: 0; background-image: url('../kepek/profilKepek/background.png');">
+<nav class="navbar navbar-expand-lg fs-4">
   <div class="container-fluid">
   <img src="../kepek/profilKepek/logo.png" alt="Oldal logo" style="width:100px;" class="rounded-pill float-start"> 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-collapse navbar-nav me-auto mb-2 mb-lg-0">
+    <div class="collapse navbar-collapse text-center" id = "navbarSupportedContent">
+      <ul class="navbar-collapse navbar-nav justify-content-end">
         <li class="nav-item">
-          <a class="nav-link active text-white" href="#">Főoldal</a>
+          <a class="nav-link active text-white" href="../frontend/fooldal.php">Főoldal</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Túrák</a>
+          <a class="nav-link text-white" href="../frontend/turak.php">Túrák</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link" href="../frontend/informaciok.php" role="button" aria-expanded="false">
+          <a class="nav-link text-white" href="../frontend/informaciok.php" role="button" aria-expanded="false">
             Információ
           </a>
         </li>
-      </ul>
-      <div class = "navbar-nav">
-        <ul class = " navbar-nav me-auto mb-2 mb-lg-0">
-                <?php
+          <?php
                   if(isset($_SESSION['nev'])){
                 ?>
                   <li class = "nav-item p-2">
@@ -58,30 +55,15 @@
                     </svg>
                     </a>
                   </li>
-        </ul>
-      </div>
+      </ul>
     </div>
   </div>
 </nav>
 
-<div class = "text-white position-absolute bottom-50 end-50 m-5">
+<div class = "text-white bottom-50 end-50 m-5 p-5">
   <h1 style = "font-size: 60px">Találd meg kedvenc túra útvonalad.</h1>
   <form action="" method="post">
-      <button class = "btn text-white">Felfedezés</button>
-  </form>
-</div>
-
-<div class = "text-white position-absolute bottom-50 end-50 m-5">
-  <h1 style = "font-size: 60px">Találd meg kedvenc túra útvonalad.</h1>
-  <form action="" method="post">
-      <button class = "btn text-white">Felfedezés</button>
-  </form>
-</div>
-
-<div class = "text-white position-absolute bottom-50 end-50 m-5">
-  <h1 style = "font-size: 60px">Találd meg kedvenc túra útvonalad.</h1>
-  <form action="" method="post">
-      <button class = "btn text-white">Felfedezés</button>
+      <a href = "../frontend/turak.php" class = "btn text-white bg-dark">Felfedezés</a>
   </form>
 </div>
 
