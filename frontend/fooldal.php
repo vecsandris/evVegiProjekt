@@ -9,9 +9,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ytravel</title>
+    <title>Főoldal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="../style.css">
+    <link rel="shortcut icon" href="../kepek/profilkepek/logo.png" type="image/x-icon">
 </head>
 <body style = "display: block; padding-top: 0; padding-bottom: 0; background-image: url('../kepek/profilKepek/background.png');">
 <nav class="navbar navbar-expand-lg fs-4">
@@ -49,10 +51,7 @@
                 ?>
                 <li class = "nav-item p-2">
                     <a class="navbar-brand text-white" href="../server/belepes.php">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                      <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                    </svg>
+                    <i class="bi bi-tree-fill fs-1"></i>
                     </a>
                   </li>
       </ul>

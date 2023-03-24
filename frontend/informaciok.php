@@ -13,7 +13,8 @@ $nev
   <title>Ytravel</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../style.css?t=<?= microtime(); ?>">
+  <link rel="shortcut icon" href="../kepek/profilkepek/logo.png" type="image/x-icon">
 </head>
 
 <body class="d-flex flex-column pt-0 pb-0 d-inherit" style="background-image: url('../kepek/profilKepek/background2.png'); background-repeat: no-repeat; background-size:cover;">
@@ -52,18 +53,9 @@ $nev
           ?>
           <li class="nav-item p-2" style="width:40px;height: 40px;">
             <a class="navbar-link text-white" href="../server/belepes.php">
-              <i class="bi bi-person-circle"></i>
+            <i class="bi bi-tree-fill fs-1"></i>
             </a>
           </li>
-
-          <!-- <li class="nav-item p-2">
-            <a class="navbar-brand text-white" href="../server/belepes.php">
-              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-              </svg>
-            </a>
-          </li> -->
         </ul>
       </div>
     </div>
@@ -93,7 +85,7 @@ $nev
       </div>
     </div>
   </div>
-  <footer class="text-center text-light bg-success mt-auto pt-1 w-100">
+  <footer class="text-center text-light bg-success w-100 mt-auto">
     <div class="row w-100">
       <div class="col-4 col-md-4">
         <span class="fs-6">Kapcsolatok</span><br>
