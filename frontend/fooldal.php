@@ -66,6 +66,33 @@
   </form>
 </div>
 
+
+<div class = "d-flex justify-content-around m-5 p-5">
+
+  <div class="card" style="width: 18rem;">
+    <img src="../kepek/bacskiskunvarmegye.png" class="card-img-top" alt="Bács-Kiskun">
+    <div class="card-body">
+      <h5 class="card-title">Bács-Kiskun vármegye</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+  </div>
+  <div class="card" style="width: 18rem;">
+    <img src= "../kepek/baranyavarmegye.png" class="card-img-top" alt="Baranya">
+    <div class="card-body">
+      <h5 class="card-title">Baranya vármegye</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+  </div>
+  <div class="card" style="width: 18rem;">
+    <img src="../kepek/bekesvarmegye.png" class="card-img-top" alt="Békés">
+    <div class="card-body">
+      <h5 class="card-title">Békés vármegye</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+  </div>
+
+</div>
+
 <?php
   if(isset($_POST["kilep"]))
   {   session_unset();
