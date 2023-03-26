@@ -13,7 +13,7 @@ $nev
   <title>Ytravel</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <link rel="stylesheet" href="../style.css?t=<?= microtime(); ?>">
+  <link rel="stylesheet" href="../style.css">
   <link rel="shortcut icon" href="../kepek/profilkepek/logo.png" type="image/x-icon">
 </head>
 
@@ -81,7 +81,7 @@ $nev
         <p class="fs-3">Üdvözöllek az Ytravel nevű weblapon, amely magyarországi túra útvonalakat kínál az érdeklődők számára. Az oldalunk célja, hogy segítsünk az embereknek felfedezni és megtapasztalni az izgalmas kirándulóhelyeket és természeti szépségeket, amelyekre hazánk büszke lehet.</p>
       </div>
       <div class="col col-lg-6">
-        <p class="fs-3">Az oldalunkon fellelhető túraútvonalak széles skáláját kínálják, kezdve a könnyű sétáktól a nagyon nehéz hegyi túrákig. Az útvonalak mindegyike részletes leírással és térképekkel rendelkezik, hogy segítségére legyen a látogatóknak a kiválasztásban és az útvonalak navigálásában.</p>
+        <p class="fs-3">Az oldalunkon fellelhető túraútvonalak széles skáláját kínálják, kezdve a könnyű sétáktól a nagyon nehéz hegyi túrákig. Az útvonalak mindegyike részletes leírással rendelkezik, hogy segítségére legyen a látogatóknak a kiválasztásban és az útvonalak navigálásában.</p>
       </div>
     </div>
   </div>
@@ -103,12 +103,6 @@ $nev
         <i class="bi bi-twitter p-2"></i>
       </div>
     </div>
-
-    <!-- <div class="row w-100">
-      <div class="col">
-        
-      </div>
-    </div> -->
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
