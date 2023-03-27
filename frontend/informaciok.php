@@ -51,8 +51,8 @@ $nev
           <?php
           }
           ?>
-          <li class="nav-item p-2" style="width:40px;height: 40px;">
-            <a class="navbar-link text-white" href="../server/belepes.php">
+          <li class="nav-item p-2">
+            <a class="navbar-brand text-white" href="../server/belepes.php">
             <i class="bi bi-tree-fill fs-1"></i>
             </a>
           </li>
@@ -85,7 +85,7 @@ $nev
       </div>
     </div>
   </div>
-  <footer class="text-center text-light bg-success w-100 mt-auto">
+  <footer class="text-center text-light bg-success w-100 mt-auto fixed-bottom">
     <div class="row w-100">
       <div class="col-4 col-md-4">
         <span class="fs-6">Kapcsolatok</span><br>
@@ -93,7 +93,7 @@ $nev
         <span class="fs-6"><i class="bi bi-envelope-fill p-2"></i>Ytravel@gmail.com</span>
       </div>
       <div class="col-4 col-md-4">
-        <span class="fs-6">Lorem ipsum dolor sit amet!</span><br>
+        <span class="fs-6">Köszönjük, hogy a mi weboldalunkt választotta!</span><br>
         <span class="text-light">Ytravel &copy; 2023-2028</span>
       </div>
       <div class="col-4 col-md-4">
