@@ -134,5 +134,71 @@ class Turak
       print($tartatlom);
   }
 }
+class AdminFelulet
+    {   
+        public mysqli $csatlakozas;
+        function __construct()
+        {
+            $this->csatlakozas = new mysqli("localhost","root","","turazas");
+
+        }
+        function Felhasznalok()
+        {
+            $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok where nev != 'admin'");
+            while($adat = $felhasznalokiiras->fetch_assoc())
+            {
+               print("<img src=../kepek/profilKepek/".$adat["user_kep_id"].".jpg style='width='50px' height='50px''><br>
+               <a href='?userid=".$adat["id"]."'>".$adat["nev"]."</a><br>");
+            }
+        }
+
+        function FelhasznaloUpdate($nev,$jelszo,$kepid)
+        {
+            $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok where nev = '".$nev."' and id != '".$_GET["userid"]."' ");
+            if($adat = $felhasznalokiiras->fetch_assoc())
+            {
+               print("Már van ilyen felhasználó név");
+            }
+            else
+            {
+                print("siker");
+                $felhasznaloJavitás = $this->csatlakozas->query("UPDATE felhasznalok SET nev = '".$nev."', jelszo = '".$jelszo."' , user_kep_id = '".$kepid."' WHERE id = '".$_GET['userid']."'");
+            }
+        }
+
+        function FelhasznaloSzerkesztes()
+        {
+            $tartalom = "";
+            $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok where id = '".$_GET['userid']."'");
+            if($adat = $felhasznalokiiras->fetch_assoc())
+            {
+               $tartalom .="<form action='' method='post'>
+               <input type='text' name='nevecske' value=".$adat['nev']."><br>
+               <input type='text' name='jelszocska' value=".$adat['jelszo']."><br>
+               <select name='kepek'>
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+                </select>
+               <button type='submit'  name = 'szerkesztes'>Szereksztés</button>
+               </form>";
+               
+            }
+            print($tartalom);
+        }
+
+        function Turak()
+        {
+            $tartalom = '';
+            $turakiiras = $this->csatlakozas->query("SELECT * from turak");
+            while($adat = $turakiiras->fetch_assoc())
+            {
+                $tartalom .="<a href='?turaid=".$adat["id"]."'>".$adat['tura_nev']."</a>";
+                $tartalom .= "<br>";        
+        
+            }
+            print($tartalom);
+
+        }
+    }
 
 ?>

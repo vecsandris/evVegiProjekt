@@ -35,6 +35,20 @@
             Információ
           </a>
         </li>
+        <?php
+        if(isset($_SESSION['nev'])){
+          if($_SESSION["nev"] == "admin")
+          {
+        print("
+        <li class='nav-item dropdown'>
+          <a class='nav-link text-white' href='../frontend/adminFelulet.php' role='button' aria-expanded='false'>
+            Adminfelület
+          </a>
+        </li>
+
+        ");
+      }  
+      }      ?>
           <?php
                   if(isset($_SESSION['nev'])){
                 ?>
