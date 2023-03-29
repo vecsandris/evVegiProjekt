@@ -30,7 +30,7 @@
         <li class="nav-item">
           <a class="nav-link text-white" href="../frontend/turak.php">Túrák</a>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item">
           <a class="nav-link text-white" href="../frontend/informaciok.php" role="button" aria-expanded="false">
             Információ
           </a>
@@ -40,7 +40,7 @@
           if($_SESSION["nev"] == "admin")
           {
         print("
-        <li class='nav-item dropdown'>
+        <li class='nav-item'>
           <a class='nav-link text-white' href='../frontend/adminFelulet.php' role='button' aria-expanded='false'>
             Adminfelület
           </a>
