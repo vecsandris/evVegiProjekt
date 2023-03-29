@@ -100,27 +100,24 @@ class Megye
     {
         $tartalom = "";
         $belepes = $this->csatlakozas->query("SELECT * FROM megye");
-        $idx = 1;
+        $idx = 0;
         while ($adat = $belepes->fetch_assoc()) {
-
-            //<div class="col col-lg-6">
-            $tartalom .= '
             
-            <div class="row row-cols-3">
-            <div class="col">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="../kepek/' . $adat['megye_kep_nev'] . '.png" alt="' . $adat['megye_nev'] . '">
-                    <div class="card-body">
-                    <h5 class="card-title">' . $adat['megye_nev'] . '</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+            $tartalom.='
+                <div class="col-sm-4 p-3">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="../kepek/' . $adat['megye_kep_nev'] . '.png" alt="' . $adat['megye_nev'] . '" style="height:160.516px;">
+                        <div class="card-body">
+                            <h5 class="card-title">' . $adat['megye_nev'] . '</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+                            <a href="?idx='.$adat['id'].'" class="btn btn-primary">Részletek</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            </div>
-         
+
                 ';
-                //</div>
-        }
-        print($tartalom);
+            }
+            print($tartalom);
     }
 }
 class AdminFelulet
@@ -190,5 +187,5 @@ class AdminFelulet
 
         }
     }
-    
+
 ?>
