@@ -46,7 +46,7 @@
           </a>
         </li>
         ");
-      }  
+      }
       }      ?>
           <?php
                   if(isset($_SESSION['nev'])){
@@ -108,7 +108,8 @@
 
 <?php
   if(isset($_POST["kilep"]))
-  {   session_unset();
+  {   
+      session_unset();
       session_destroy();
       header("Location: ../index.php");
   }
