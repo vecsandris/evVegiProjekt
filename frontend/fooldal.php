@@ -45,7 +45,6 @@
             Adminfelület
           </a>
         </li>
-
         ");
       }  
       }      ?>
