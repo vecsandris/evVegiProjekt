@@ -186,6 +186,38 @@ class AdminFelulet
             print($tartalom);
 
         }
+        function TuraSzerkesztes()
+        {
+            $tartalom = "";
+            $felhasznalokiiras=$this->csatlakozas->query("SELECT * from turak where id = '".$_GET['turaid']."'");
+            if($adat = $felhasznalokiiras->fetch_assoc())
+            {
+               $tartalom .="<form action='' method='post'>
+               <input type='text' name='turanev' value=".$adat['tura_nev']."><br>
+               <input type='text' name='turahossz' value=".$adat['tura_hossza']."><br>
+               <input type='text' name='turanehez' value=".$adat['tura_nehezseg']."><br>
+               <input type='text' name='turafel' value=".$adat['tura_felkapottsag']."><br>
+               <input type='text' name='megyeid' value=".$adat['megye_id']."><br>
+               <button type='submit'  name = 'szerkesztestura'>Szereksztés</button>
+               </form>";
+               
+            }
+            print($tartalom);
+        }
+        function TuraUpdate($turanev,$turahossz,$turanehez,$turafelkap,$megye_id)
+        {
+            $felhasznalokiiras=$this->csatlakozas->query("SELECT * from turak where tura_nev = '".$turanev."' and id != '".$_GET["turaid"]."' ");
+            if($adat = $felhasznalokiiras->fetch_assoc())
+            {
+               print("Már van ilyen tura név!");
+            }
+            else
+            {
+                print("siker");
+                $turaJavitás = $this->csatlakozas->query("UPDATE turak SET tura_nev = '".$turanev."', tura_hossza = '".$turahossz."' , tura_nehezseg = '".$turanehez."',
+                 tura_felkapottsag = '".$turafelkap."' ,megye_id = '".$megye_id."' WHERE id = '".$_GET['turaid']."'");
+            }
+        }
     }
 
 ?>

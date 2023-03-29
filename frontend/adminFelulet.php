@@ -79,4 +79,14 @@ include("../server/classes.php");
         $adminlekeres = new AdminFelulet();
         $adminlekeres->FelhasznaloUpdate($_POST["nevecske"],$_POST["jelszocska"],$_POST["kepek"]);
     }
+    if(isset($_GET["turaid"]))
+    {
+        $adminlekeres = new AdminFelulet();
+        $adminlekeres->TuraSzerkesztes();
+    }
+    if(isset($_POST["szerkesztestura"]))
+    {
+        $adminlekeres = new AdminFelulet();
+        $adminlekeres->TuraUpdate($_POST["turanev"],$_POST["turahossz"],$_POST["turanehez"],$_POST["turafel"],$_POST["megyeid"]);
+    }
 ?>
