@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Már 27. 09:03
+-- Létrehozás ideje: 2023. Már 27. 14:57
 -- Kiszolgáló verziója: 10.4.14-MariaDB
 -- PHP verzió: 7.4.11
 
@@ -39,8 +39,8 @@ CREATE TABLE `felhasznalok` (
 --
 
 INSERT INTO `felhasznalok` (`id`, `nev`, `jelszo`, `user_kep_id`) VALUES
-(1, 'admin', 'admin', ''),
-(8, 'asd', 'asd', '');
+(1, 'admin', 'admin', '1'),
+(8, 'asd', 'ísyadSADASD', '1');
 
 -- --------------------------------------------------------
 
