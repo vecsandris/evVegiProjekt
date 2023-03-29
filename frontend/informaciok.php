@@ -27,13 +27,13 @@ $nev
       <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
         <ul class="navbar-collapse navbar-nav justify-content-end">
           <li class="nav-item">
-            <a class="nav-link active text-white" href="../frontend/fooldal.php">Főoldal</a>
+            <a class="nav-link active text-black" href="../frontend/fooldal.php">Főoldal</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="../frontend/turak.php">Túrák</a>
+            <a class="nav-link text-black" href="../frontend/turak.php">Túrák</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link text-white" href="../frontend/informaciok.php" role="button" aria-expanded="false">
+            <a class="nav-link text-black" href="../frontend/informaciok.php" role="button" aria-expanded="false">
               Információ
             </a>
           </li>
@@ -46,13 +46,13 @@ $nev
               </form>
             </li>
             <li class="nav-item p-2">
-              <p class="text-white"><?php print  $_SESSION["nev"]; ?></p>
+              <p class="text-black"><?php print  $_SESSION["nev"]; ?></p>
             </li>
           <?php
           }
           ?>
           <li class="nav-item p-2">
-            <a class="navbar-brand text-white" href="../server/belepes.php">
+            <a class="navbar-brand text-black" href="../server/belepes.php">
             <i class="bi bi-tree-fill fs-1"></i>
             </a>
           </li>

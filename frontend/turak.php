@@ -26,13 +26,13 @@ $megye = new Megye();
       <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
         <ul class="navbar-collapse navbar-nav justify-content-end">
           <li class="nav-item">
-            <a class="nav-link active text-white" href="../frontend/fooldal.php">Főoldal</a>
+            <a class="nav-link active text-black" href="../frontend/fooldal.php">Főoldal</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="../frontend/turak.php">Túrák</a>
+            <a class="nav-link text-black" href="../frontend/turak.php">Túrák</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link text-white" href="../frontend/informaciok.php" role="button" aria-expanded="false">
+            <a class="nav-link text-black" href="../frontend/informaciok.php" role="button" aria-expanded="false">
               Információ
             </a>
           </li>
@@ -45,13 +45,13 @@ $megye = new Megye();
               </form>
             </li>
             <li class="nav-item p-2">
-              <p class="text-white"><?php print  $_SESSION["nev"]; ?></p>
+              <p class="text-black"><?php print  $_SESSION["nev"]; ?></p>
             </li>
           <?php
           }
           ?>
           <li class="nav-item p-2">
-            <a class="navbar-brand text-white" href="../server/belepes.php">
+            <a class="navbar-brand text-black" href="../server/belepes.php">
               <i class="bi bi-tree-fill fs-1"></i>
             </a>
           </li>
@@ -60,7 +60,9 @@ $megye = new Megye();
     </div>
   </nav>
   <div class="container text-center">
-    <?php $megye->MegyeKiiras();?>
+    <div class="row">
+      <?php $megye->MegyeKiiras();?>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
