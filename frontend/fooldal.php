@@ -46,7 +46,7 @@
           </a>
         </li>
         ");
-      }  
+      }
       }      ?>
           <?php
                   if(isset($_SESSION['nev'])){
@@ -86,21 +86,21 @@
     <img src="../kepek/bacskiskunvarmegye.png" class="card-img-top" alt="Bács-Kiskun">
     <div class="card-body">
       <h5 class="card-title">Bács-Kiskun vármegye</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <p class="card-text">Bács-Kiskun vármegye Magyarország déli részén található, és gazdag természeti kincsekben, változatos tájban, sík vidékeken és dombokban gazdag terület.</p>
     </div>
   </div>
   <div class="card" style="width: 18rem;">
     <img src= "../kepek/baranyavarmegye.png" class="card-img-top" alt="Baranya">
     <div class="card-body">
       <h5 class="card-title">Baranya vármegye</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <p class="card-text">Baranya vármegye Magyarország dél-délnyugati részén található, a Dél-Dunántúli régióban. A terület gazdag természeti kincsekben, változatos tájban, hegyekben, völgyekben, erdőkben és folyókban.</p>
     </div>
   </div>
   <div class="card" style="width: 18rem;">
     <img src="../kepek/bekesvarmegye.png" class="card-img-top" alt="Békés">
     <div class="card-body">
       <h5 class="card-title">Békés vármegye</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <p class="card-text">Békés vármegye Magyarország délkeleti részén található, a Dél-Alföldön. A területen számos érdekes természeti látnivaló található.</p>
     </div>
   </div>
 
@@ -108,7 +108,8 @@
 
 <?php
   if(isset($_POST["kilep"]))
-  {   session_unset();
+  {   
+      session_unset();
       session_destroy();
       header("Location: ../index.php");
   }
