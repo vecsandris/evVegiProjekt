@@ -135,8 +135,17 @@ class AdminFelulet
             $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok where nev != 'admin'");
             while($adat = $felhasznalokiiras->fetch_assoc())
             {
-               print("<img src=../kepek/profilKepek/".$adat["user_kep_id"].".jpg style='width='50px' height='50px''><br>
-               <a href='?userid=".$adat["id"]."'>".$adat["nev"]."</a><br>");
+               print(
+                '
+                 <div class="card" style="width: 18rem;">
+                 <img src=../kepek/profilKepek/'.$adat["user_kep_id"].'.jpg class = "card-img-top"">
+                    <div class="card-body">
+                      <p>'.$adat['nev'].'</p>
+                    </div>
+                    <a href="?userid='.$adat['id'].'" class = "btn btn-primary">Szerkesztés</a>
+               </div>
+                 '
+               );
             }
         }
 
@@ -145,12 +154,38 @@ class AdminFelulet
             $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok where nev = '".$nev."' and id != '".$_GET["userid"]."' ");
             if($adat = $felhasznalokiiras->fetch_assoc())
             {
-               print("Már van ilyen felhasználó név");
+               echo '
+               <script type="text/javascript">
+
+               $(document).ready(function(){
+
+                Swal.fire({
+                    icon: "error",
+                    title: "Már van ilyen felhasználónév!",
+                    text: "Adj meg másikat!",
+                    footer: "<a></a>"
+                    )
+              })
+              </script>;
+               ';
             }
             else
             {
-                print("siker");
+                echo '<script type="text/javascript">
+
+                $(document).ready(function(){
+                
+                    Swal.fire(
+                        "Sikeres feltöltés!",
+                        "",
+                        "success"
+                      )
+                })
+                </script>
+                ';
+                
                 $felhasznaloJavitás = $this->csatlakozas->query("UPDATE felhasznalok SET nev = '".$nev."', jelszo = '".$jelszo."' , user_kep_id = '".$kepid."' WHERE id = '".$_GET['userid']."'");
+                //header("Location: /frontend/adminFelulet.php?adminmenu=1"); --> visszavisz az alap admin oldalra de nincs animáció
             }
         }
 
@@ -160,15 +195,28 @@ class AdminFelulet
             $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok where id = '".$_GET['userid']."'");
             if($adat = $felhasznalokiiras->fetch_assoc())
             {
-               $tartalom .="<form action='' method='post'>
-               <input type='text' name='nevecske' value=".$adat['nev']."><br>
-               <input type='text' name='jelszocska' value=".$adat['jelszo']."><br>
-               <select name='kepek'>
-                <option value='1'>1</option>
-                <option value='2'>2</option>
-                </select>
-               <button type='submit'  name = 'szerkesztes'>Szereksztés</button>
-               </form>";
+               $tartalom .='
+               <div class="col-sm-4 p-3">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <form action = "" method = "post">
+                                <label for = "nevecske">Név:</label>
+                                <input type="text" name="nevecske" value="'.$adat['nev'].'">
+                                <label for = "jelszocska">Jelszó:</label>
+                                <input type="text" name="jelszocska" value="'.$adat["jelszo"].'">
+                                <label for = "kepek">Azonositó:</label>
+                                <select name="kepek">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                </select>
+                                <br>
+                                <button type="submit"  name = "szerkesztes" class = "btn btn-primary">Szereksztés</button>
+                            </form>
+                        </div>
+                    </div>
+             </div>
+             '
+               ;
                
             }
             print($tartalom);
@@ -177,11 +225,21 @@ class AdminFelulet
         function Turak()
         {
             $tartalom = '';
-            $turakiiras = $this->csatlakozas->query("SELECT * from turak");
+            $turakiiras = $this->csatlakozas->query("SELECT *, SUBSTRING(tura_leiras.tura_szoveg, 1, 200) AS vagott FROM tura_leiras INNER JOIN turak ON tura_leiras.id=turak.id");
             while($adat = $turakiiras->fetch_assoc())
             {
-                $tartalom .="<a href='?turaid=".$adat["id"]."'>".$adat['tura_nev']."</a>";
-                $tartalom .= "<br>";        
+                $tartalom .= '
+                <div class="col-sm-4 p-3">
+                    <div class="card" style="width: 18rem;">
+                        <img src="../kepektura/'.$adat["tura_kep_nev"].'.jpg" class="card-img-top" alt="túra kép">
+                            <div class="card-body">
+                            <h5 class="card-title">'.$adat['tura_nev'].'</h5>
+                                <p class="card-text">'.$adat['vagott'].'...</p>
+                            </div>
+                    <a href="?turaid='.$adat["id"].'" class = "btn btn-primary">Szerkesztés</a>
+                </div>
+              </div>
+                ';   
         
             }
             print($tartalom);
@@ -193,14 +251,26 @@ class AdminFelulet
             $felhasznalokiiras=$this->csatlakozas->query("SELECT * from turak where id = '".$_GET['turaid']."'");
             if($adat = $felhasznalokiiras->fetch_assoc())
             {
-               $tartalom .="<form action='' method='post'>
-               <input type='text' name='turanev' value=".$adat['tura_nev']."><br>
-               <input type='text' name='turahossz' value=".$adat['tura_hossza']."><br>
-               <input type='text' name='turanehez' value=".$adat['tura_nehezseg']."><br>
-               <input type='text' name='turafel' value=".$adat['tura_felkapottsag']."><br>
-               <input type='text' name='megyeid' value=".$adat['megye_id']."><br>
-               <button type='submit'  name = 'szerkesztestura'>Szereksztés</button>
-               </form>";
+               $tartalom.='
+               <div class="card text-center" style="width: 18rem;">
+                    <div class="card-body">
+                        <form action="" method="post">
+                            <h2>Túra szerkesztés</h2>
+                            <label for = "turanev">Túra név szerkesztés:</label>
+                            <input type="text" name="turanev" value="'.$adat["tura_nev"].'">
+                            <label for = "turahossz">Túra hossza:</label>
+                            <input type="text" name="turahossz" value="'.$adat["tura_hossza"].'">
+                            <label for = "turanehez">Túra nehézsége:</label>
+                            <input type="text" name="turanehez" value="'.$adat["tura_nehezseg"].'">
+                            <label for = "turafel">Túra felkapottsága:</label>
+                            <input type="text" name="turafel" value="'.$adat["tura_felkapottsag"].'">
+                            <label for = "megyeid">Megye id:</label>
+                            <input type="text" name="megyeid" value="'.$adat["megye_id"].'">
+                            <button type="submit"  name = "szerkesztestura" class = "btn btn-primary">Szereksztés</button>
+                        </form>
+                    </div>
+                </div>
+               ';
                
             }
             print($tartalom);
@@ -210,11 +280,35 @@ class AdminFelulet
             $felhasznalokiiras=$this->csatlakozas->query("SELECT * from turak where tura_nev = '".$turanev."' and id != '".$_GET["turaid"]."' ");
             if($adat = $felhasznalokiiras->fetch_assoc())
             {
-               print("Már van ilyen tura név!");
+                echo '
+                <script type="text/javascript">
+ 
+                $(document).ready(function(){
+ 
+                 Swal.fire({
+                     icon: "error",
+                     title: "Már van ilyen túra név!",
+                     text: "Adj meg másikat!",
+                     footer: "<a></a>"
+                     )
+               })
+               </script>;
+                ';
             }
             else
             {
-                print("siker");
+                echo '<script type="text/javascript">
+
+                $(document).ready(function(){
+                
+                    Swal.fire(
+                        "Sikeres feltöltés!",
+                        "",
+                        "success"
+                      )
+                })
+                </script>;
+                ';
                 $turaJavitás = $this->csatlakozas->query("UPDATE turak SET tura_nev = '".$turanev."', tura_hossza = '".$turahossz."' , tura_nehezseg = '".$turanehez."',
                  tura_felkapottsag = '".$turafelkap."' ,megye_id = '".$megye_id."' WHERE id = '".$_GET['turaid']."'");
             }
