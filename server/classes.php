@@ -72,14 +72,15 @@ class Turak
         $belepes = $this->csatlakozas->query("SELECT * from turak where megye_id = '" . $megyeid . "'");
         while ($adat = $belepes->fetch_assoc()) {
             $tartatlom .= '
-            <div class="container text-center">
-                <div class="row">
-                    <div class = "col">
-                        ' . $adat["tura_nev"] . '<br>
-                        Tura hossza: ' . $adat["tura_hossza"] . ' km<br>
+            <div class="col-md-4 p-3">
+                <div class="card" style="width: 18rem;">
+                    <img src=../kepektura/' . $adat["tura_kep_nev"] . '.jpg class = "img-fluid" " style="height:160.516px;">
+                    <div class = "card-body">
+                        <h5 class="card-title">' . $adat["tura_nev"] . '</h5>
+                        <p class="card-text">Tura hossza: ' . $adat["tura_hossza"] . ' km<br>
                         Tura nehezseg: ' . $adat["tura_nehezseg"] . '<br>
-                        Felkapottság: ' . $adat["tura_felkapottsag"] . '<br>
-                        <a href="?tura_id=' . $adat["id"] . '"> <img src=../kepektura/' . $adat["tura_kep_nev"] . '.jpg class = "img-fluid"></a><br>
+                        Felkapottság: ' . $adat["tura_felkapottsag"] . '<br></p>
+                        <a href="../frontend/turaLeiras.php?tura_id=' . $adat["id"] . '" class="btn btn-primary">Részletek</a><br>
                     </div>
                 </div>
             </div>
@@ -100,17 +101,17 @@ class Megye
     {
         $tartalom = "";
         $belepes = $this->csatlakozas->query("SELECT * FROM megye");
-        $idx = 0;
+        $_GET['idx'] = 0;
         while ($adat = $belepes->fetch_assoc()) {
             
             $tartalom.='
-                <div class="col-sm-4 p-3">
+                <div class="col-md-4 p-3">
                     <div class="card" style="width: 18rem;">
                         <img class="card-img-top" src="../kepek/' . $adat['megye_kep_nev'] . '.png" alt="' . $adat['megye_nev'] . '" style="height:160.516px;">
                         <div class="card-body">
                             <h5 class="card-title">' . $adat['megye_nev'] . '</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-                            <a href="?idx='.$adat['id'].'" class="btn btn-primary">Részletek</a>
+                            <a href="../frontend/turakInfo.php?idx='.$adat['id'].'" class="btn btn-primary">Részletek</a>
                         </div>
                     </div>
                 </div>
