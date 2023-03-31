@@ -1,7 +1,7 @@
 <?php
-include("../server/classes.php");
-$belepes = new Belepes();
-$nev
+  include("../server/classes.php");
+  $belepes = new Belepes();
+  $nev
 ?>
 
 <html lang="en">
@@ -17,7 +17,7 @@ $nev
   <link rel="shortcut icon" href="../kepek/profilkepek/logo.png" type="image/x-icon">
 </head>
 
-<body class="d-flex flex-column pt-0 pb-0 d-inherit" style="background-image: url('../kepek/profilKepek/background2.png'); background-repeat: no-repeat; background-size:cover;">
+<body class="d-flex flex-column pt-0 pb-0 d-inherit" style="background-image: url('../kepek/profilKepek/Background2.png'); background-repeat: no-repeat; background-size:cover;">
   <nav class="navbar navbar-expand-lg fs-4 w-100 d-flex">
     <div class="container-fluid">
       <img src="../kepek/profilKepek/logo.png" alt="Oldal logo" style="width:100px;" class="rounded-pill float-start">
@@ -85,7 +85,7 @@ $nev
       </div>
     </div>
   </div>
-  <footer class="text-center text-light bg-success w-100 mt-auto fixed-bottom">
+  <footer class="text-center text-light bg-success w-100 fixed-bottom py-3">
     <div class="row w-100">
       <div class="col-4 col-md-4">
         <span class="fs-6">Kapcsolatok</span><br>

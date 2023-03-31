@@ -1,7 +1,8 @@
 <?php
-include("../server/classes.php");
-$megye = new Megye();
+    include("../server/classes.php");
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,18 +10,18 @@ $megye = new Megye();
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Túrák</title>
+  <title>Ytravel</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <link rel="icon" type="image/x-icon" href="../kepek/profilkepek/logo.png">
   <link rel="stylesheet" href="../style.css">
+  <link rel="shortcut icon" href="../kepek/profilkepek/logo.png" type="image/x-icon">
 </head>
 
-<body style="display: block; padding-top: 0; padding-bottom: 0; background-image: url('../kepek/profilKepek/background2.png'); background-repeat: no-repeat; background-attachment: fixed;">
-  <nav class="navbar navbar-expand-lg fs-4">
+<body class="d-flex flex-column pt-0 pb-0 d-inherit" style="background-image: url('../kepek/profilKepek/Background2.png'); background-repeat: no-repeat; background-size:cover;">
+  <nav class="navbar navbar-expand-lg fs-4 w-100 d-flex">
     <div class="container-fluid">
       <img src="../kepek/profilKepek/logo.png" alt="Oldal logo" style="width:100px;" class="rounded-pill float-start">
-      <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
@@ -52,40 +53,25 @@ $megye = new Megye();
           ?>
           <li class="nav-item p-2">
             <a class="navbar-brand text-black" href="../server/belepes.php">
-              <i class="bi bi-tree-fill fs-1"></i>
+            <i class="bi bi-tree-fill fs-1"></i>
             </a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <div class="container text-center">
-    <div class="row">
-      <?php $megye->MegyeKiiras();?>
-    </div>
-  </div>
-  
-  <footer class="text-center text-light bg-success w-100 bottom-0 py-3">
-    <div class="row w-100">
-      <div class="col-4 col-md-4">
-        <span class="fs-6">Kapcsolatok</span><br>
-        <span class="fs-6"><i class="bi bi-telephone-fill p-2"></i>+11 111 111 1111</span><br>
-        <span class="fs-6"><i class="bi bi-envelope-fill p-2"></i>Ytravel@gmail.com</span>
-      </div>
-      <div class="col-4 col-md-4">
-        <span class="fs-6">Köszönjük, hogy a mi weboldalunkt választotta!</span><br>
-        <span class="text-light">Ytravel &copy; 2023-2028</span>
-      </div>
-      <div class="col-4 col-md-4">
-        <span class="fs-6">Kövess minket itt is</span><br>
-        <i class="bi bi-facebook p-2"></i>
-        <i class="bi bi-instagram p-2"></i>
-        <i class="bi bi-twitter p-2"></i>
-      </div>
-    </div>
-  </footer>
 
+
+
+  <?php
+  if (isset($_POST["kilep"])) {
+    session_unset();
+    session_destroy();
+    header("Location: ../index.php");
+  }
+  ?>
+
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
-
 </html>
