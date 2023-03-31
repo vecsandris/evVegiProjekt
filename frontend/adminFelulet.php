@@ -112,4 +112,29 @@ include("../server/classes.php");
         $adminlekeres = new AdminFelulet();
         $adminlekeres->TuraUpdate($_POST["turanev"],$_POST["turahossz"],$_POST["turanehez"],$_POST["turafel"],$_POST["megyeid"]);
     }
+    if(isset($_POST["turaadd"]))
+    {
+      $adminlekeres = new AdminFelulet();
+      $adminlekeres->TuraHozaadass($_POST["turanev1"],$_POST["turahossz1"],$_POST["turanehez1"],$_POST["turafel1"],$_POST["megyeid1"],$_POST["tura_kep"]);
+
+    }
+    if(isset($_POST["felhasznalohozzaadas"]))
+    {
+      print("<form action='' method='post'>
+      <input type='text' name='nevecske2' ><br>
+      <input type='text' name='jelszocska2'><br>
+      <select name='kepek2'>
+       <option value='1'>1</option>
+       <option value='2'>2</option>
+       </select>
+      <button type='submit'  name = 'hozzaadas'>Hozzáadás</button>
+      </form>");
+    }
+    if(isset($_POST["hozzaadas"]))
+    {
+      $adminlekeres = new AdminFelulet();
+      $adminlekeres-> FelhasznaloHozzaadas($_POST["nevecske2"],$_POST["jelszocska2"],$_POST["kepek2"]);
+      
+    }
+  
 ?>
