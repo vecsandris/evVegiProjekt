@@ -47,7 +47,16 @@
         </li>
 
         ");
-      }  
+         }
+         else
+         {
+           print("     
+            <li class='nav-item'>
+           <a class='nav-link text-white' href='../frontend/profil.php' role='button' aria-expanded='false'>
+             Profil
+           </a>
+         </li>");
+         }  
       }      ?>
           <?php
                   if(isset($_SESSION['nev'])){

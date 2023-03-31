@@ -13,6 +13,7 @@ class Belepes
         $belepes = $this->csatlakozas->query("SELECT * from felhasznalok where nev = '" . $nev . "' and jelszo = '" . $jelszo . "' ");
         if ($adat = $belepes->fetch_assoc()) {
             $_SESSION["nev"] = $adat['nev'];
+            $_SESSION["id"] = $adat["id"];
             header("Location: ./");
         } else {
             print("Sikeretlen a belépés probálkozon újra vagy regisztráljon!");
@@ -131,7 +132,9 @@ class AdminFelulet
 
         }
         function Felhasznalok()
-        {
+        {            print("<form action='' method='post'>
+            <button type='submit'  name='felhasznalohozzaadas' >Felhasználó hozzáadása</button>
+            </form>");
             $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok where nev != 'admin'");
             while($adat = $felhasznalokiiras->fetch_assoc())
             {
@@ -147,6 +150,20 @@ class AdminFelulet
                  '
                );
             }
+        }
+        function FelhasznaloHozzaadas($nev,$jelszo,$kepid)
+        {
+            $nevcheck=$this->csatlakozas->query("SELECT * from felhasznalok where nev = '".$nev."'");
+            if($adat = $nevcheck->fetch_assoc())
+            {
+               print("Már van ilyen felhasználó név");
+            }
+            else
+            {
+                print("siker");
+                $felhasznaloJavitás = $this->csatlakozas->query("INSERT INTO felhasznalok(nev,jelszo,user_kep_id) Values('".$nev."','".$jelszo."','".$kepid."')");
+            }
+
         }
 
         function FelhasznaloUpdate($nev,$jelszo,$kepid)
@@ -221,11 +238,54 @@ class AdminFelulet
             }
             print($tartalom);
         }
-
+        function TuraHozaadass($turanev,$turahossz,$turanehez,$turafelkap,$megye_id,$kepnev)
+        {
+            
+            $turakiir=$this->csatlakozas->query("SELECT * from turak where tura_nev = '".$turanev."'");
+            if($adat = $turakiir->fetch_assoc())
+            {
+                print("Már van ilyen tura név!");
+               
+            }
+            else
+            {
+                
+                $turahozaadas = $this->csatlakozas->query("INSERT INTO turak (tura_nev,tura_hossza,tura_nehezseg,tura_felkapottsag,megye_id,tura_kep_nev) 
+                values('" . $turanev . "','" . $turahossz . "','".$turanehez."','".$turafelkap."','".$megye_id."','".$kepnev."')");
+                move_uploaded_file($_FILES["kep"]["tmp_name"], "../kepektura/".$_FILES["kep"]["name"]);
+                print("siker");
+            }
+            
+        }
         function Turak()
         {
             $tartalom = '';
             $turakiiras = $this->csatlakozas->query("SELECT *, SUBSTRING(tura_leiras.tura_szoveg, 1, 200) AS vagott FROM tura_leiras INNER JOIN turak ON tura_leiras.id=turak.id");
+            print("<form action='' method='post'>
+            <button type='submit'  name='turahozaadas' >Tura hozzáadás</button>
+            </form>");
+            if(isset($_POST["turahozaadas"]))
+            {
+
+                print("<form action='' method='post' enctype='multipart/form-data'>
+                <label>Tura neve</label>
+                <input type='text' name='turanev1'><br>
+                <label>Tura hossza</label>
+                <input type='number 'step='any' name='turahossz1'><br>
+                <label>Tura nehezsége</label>
+                <input type='number' name='turanehez1'><br>
+                <label>Tura felkapotság</label>
+                <input type='number' name='turafel1'><br>
+                <label>megye id</label>
+                <input type='number' name='megyeid1'><br>
+                <label>Kép neve</label>
+                <input type='text' name='tura_kep'><br>
+                <label>Kép fájl</label>
+                <input type='file' name='kep'><br>
+                <button type='submit'  name = 'turaadd'>Tura hozáadása</button>
+                </form>");
+                
+            }
             while($adat = $turakiiras->fetch_assoc())
             {
                 $tartalom .= '
@@ -311,6 +371,45 @@ class AdminFelulet
                 ';
                 $turaJavitás = $this->csatlakozas->query("UPDATE turak SET tura_nev = '".$turanev."', tura_hossza = '".$turahossz."' , tura_nehezseg = '".$turanehez."',
                  tura_felkapottsag = '".$turafelkap."' ,megye_id = '".$megye_id."' WHERE id = '".$_GET['turaid']."'");
+            }
+        }
+    }
+    class FelhasznaloiProfil
+    { 
+        public mysqli $csatlakozas;
+        function __construct()
+        {
+            $this->csatlakozas = new mysqli("localhost","root","","turazas");
+        }
+
+        function ProfilKiiras()
+        {
+            $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok where nev =  '".$_SESSION["nev"]."'");
+            if($adat = $felhasznalokiiras->fetch_assoc())
+            {
+            
+               print("<form action='' method='post'>
+               <input type='text' name='nev3' value=".$adat['nev']."><br>
+               <input type='text' name='jelszo3' value=".$adat['jelszo']."><br>
+               <select name='kepek4'>
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+                </select>
+               <button type='submit'  name = 'profilszerkesztes'>Szereksztés</button>
+               </form>");
+            }
+        }
+        function ProfilUpdate($nev,$jelszo,$kepid)
+        {
+            $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok where nev = '".$nev."' and id != '".$_SESSION["id"]."' ");
+            if($adat = $felhasznalokiiras->fetch_assoc())
+            {
+               print("Már van ilyen felhasználó név");
+            }
+            else
+            {
+                print("siker");
+                $felhasznaloJavitás = $this->csatlakozas->query("UPDATE felhasznalok SET nev = '".$nev."', jelszo = '".$jelszo."' , user_kep_id = '".$kepid."' WHERE id = '".$_SESSION["id"]."'");
             }
         }
     }
