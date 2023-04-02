@@ -1,28 +1,28 @@
-<?php
-   include("../server/classes.php");
-   $adminlekeres = new FelhasznaloiProfil();
-   $adminlekeres->ProfilKiiras();
-   if(isset($_POST["profilszerkesztes"]))
-   {    
+<!DOCTYPE html>
+<html lang="en">
+  <?php
+    include("../server/classes.php");
+    include("../components/header.php");
     $adminlekeres = new FelhasznaloiProfil();
-    $adminlekeres->ProfilUpdate($_POST["nev3"],$_POST["jelszo3"],$_POST["kepek4"]);
-
-   }
-   if(isset($_POST["kilep"]))
-   { 
-       header("location: ../frontend/fooldal.php");
-   }
-   
-?>
-          <?php
-                  if(isset($_SESSION['nev'])){
-                ?>
-                  <li class = "nav-item p-2">
-                      <form action="" method="post">
-                        <button type="submit" class="btn btn-primary" name = "kilep">Vissza a főoldalra</button>
-                      </form>
-                  </li>
-                <?php
-                  }
-                ?>
-                
+  ?>
+<body style = "background-image: url('../kepek/profilKepek/background.png');">
+  <?php
+    include("../components/navbar.php");
+  ?>
+  <main>
+  <div class = "text-white bottom-50 end-50 m-5 p-5">
+    <h1 style = "font-size: 60px">Itt állithatod a profil adataid.</h1>
+  </div>
+    <?php
+          $adminlekeres->ProfilKiiras();
+          if(isset($_POST["profilszerkesztes"]))
+          {  
+          $adminlekeres->ProfilUpdate($_POST["nev3"],$_POST["jelszo3"],$_POST["kepek4"]);
+          }
+    ?>
+  </main>
+  <?php
+    include("../components/footer.php");
+  ?>
+</body>
+</html>

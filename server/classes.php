@@ -1,5 +1,14 @@
 <?php
-session_start();
+class Kilepes{
+    function __construct()
+    {
+        if(session_unset()){
+            if(session_destroy()){
+                header("Location: ../index.php");
+            }
+        }
+    }
+}
 class Belepes
 {
     public mysqli $csatlakozas;
@@ -9,14 +18,25 @@ class Belepes
     }
     function Login($nev, $jelszo)
     {
-
         $belepes = $this->csatlakozas->query("SELECT * from felhasznalok where nev = '" . $nev . "' and jelszo = '" . $jelszo . "' ");
         if ($adat = $belepes->fetch_assoc()) {
             $_SESSION["nev"] = $adat['nev'];
             $_SESSION["id"] = $adat["id"];
+            $_SESSION["profilkep"] = $adat["user_kep_id"];
             header("Location: ./");
         } else {
-            print("Sikeretlen a belépés probálkozon újra vagy regisztráljon!");
+            echo '<script type="text/javascript">
+
+                $(document).ready(function(){
+                
+                    Swal.fire(
+                        "Sikeres feltöltés!",
+                        "",
+                        "success"
+                      )
+                })
+                </script>
+                ';
         }
     }
 }
@@ -56,7 +76,7 @@ class Szures
     }
     function SzuroRendszer()
     {
-        //$adat = $this->csatlakozas->query("SELECT * FROM megye WHERE turak_szama = ".."");
+        $adat = $this->csatlakozas->query("SELECT * FROM megye WHERE megye_nev LIKE ");
     }
 }
 class Turak
@@ -74,14 +94,14 @@ class Turak
         while ($adat = $belepes->fetch_assoc()) {
             $tartatlom .= '
             <div class="col-md-4 p-3">
-                <div class="card" style="width: 18rem;">
-                    <img src=../kepektura/' . $adat["tura_kep_nev"] . '.jpg class = "img-fluid" " style="height:160.516px;">
+                <div class="card">
+                    <img src=../kepektura/' . $adat["tura_kep_nev"] . '.jpg class = "img-fluid" " style="aspect-ratio: 16 / 9; object-fit: cover;">
                     <div class = "card-body">
                         <h5 class="card-title">' . $adat["tura_nev"] . '</h5>
-                        <p class="card-text">Tura hossza: ' . $adat["tura_hossza"] . ' km<br>
-                        Tura nehezseg: ' . $adat["tura_nehezseg"] . '<br>
-                        Felkapottság: ' . $adat["tura_felkapottsag"] . '<br></p>
-                        <a href="../frontend/turaLeiras.php?tura_id=' . $adat["id"] . '" class="btn btn-primary">Részletek</a><br>
+                        <p class="card-text">Tura hossza: ' . $adat["tura_hossza"] . ' km
+                        Tura nehezseg: ' . $adat["tura_nehezseg"] . '
+                        Felkapottság: ' . $adat["tura_felkapottsag"] . '</p>
+                        <a href="../frontend/turaLeiras.php?tura_id=' . $adat["id"] . '" class="btn btn-primary">Részletek</a>
                     </div>
                 </div>
             </div>
@@ -98,17 +118,25 @@ class Megye
     {
         $this->csatlakozas = new mysqli("localhost", "root", "", "turazas");
     }
-    function MegyeKiiras()
+    function MegyeKiiras($keresesEredmeny, $megyeNev)
     {
         $tartalom = "";
-        $belepes = $this->csatlakozas->query("SELECT * FROM megye");
+        $belepes = "";
+        if(isset($megyeNev)){
+                $belepes=$this->csatlakozas->query("SELECT * FROM megye WHERE id IN (".join(",",$megyeNev).")");
+        }
+        else if(isset($keresesEredmeny)){
+            $belepes = $this->csatlakozas->query("SELECT * FROM megye WHERE megye_nev LIKE '%".$keresesEredmeny."%'");
+        }else{
+            $belepes = $this->csatlakozas->query("SELECT * FROM megye");
+        }
         $_GET['idx'] = 0;
         while ($adat = $belepes->fetch_assoc()) {
             
             $tartalom.='
                 <div class="col-md-4 p-3">
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="../kepek/' . $adat['megye_kep_nev'] . '.png" alt="' . $adat['megye_nev'] . '" style="height:160.516px;">
+                    <div class="card">
+                        <img class="card-img-top" src="../kepek/' . $adat['megye_kep_nev'] . '.png" alt="' . $adat['megye_nev'] . '" style="aspect-ratio: 16 / 9; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">' . $adat['megye_nev'] . '</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
@@ -120,6 +148,19 @@ class Megye
                 ';
             }
             print($tartalom);
+    }
+    function MegyeSzuro(){
+        $tartalom =  "";
+        $szures = $this->csatlakozas->query("SELECT * FROM megye");
+       while ($megyeNev=$szures->fetch_assoc()) {
+            $tartalom .= '
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" value = "'.$megyeNev["id"].'" name = "megyeNev[]">
+                    <label class="form-check-label" for="'.$megyeNev["id"].'">'.$megyeNev["megye_nev"].'</label>
+                </div>
+                ';
+       }
+       print $tartalom;
     }
 }
 class AdminFelulet
@@ -133,7 +174,7 @@ class AdminFelulet
         }
         function Felhasznalok()
         {            print("<form action='' method='post'>
-            <button type='submit'  name='felhasznalohozzaadas' >Felhasználó hozzáadása</button>
+            <button type='submit'  name='felhasznalohozzaadas'>Felhasználó hozzáadása</button>
             </form>");
             $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok where nev != 'admin'");
             while($adat = $felhasznalokiiras->fetch_assoc())
@@ -156,11 +197,22 @@ class AdminFelulet
             $nevcheck=$this->csatlakozas->query("SELECT * from felhasznalok where nev = '".$nev."'");
             if($adat = $nevcheck->fetch_assoc())
             {
-               print("Már van ilyen felhasználó név");
+
             }
             else
             {
-                print("siker");
+                echo '<script type="text/javascript">
+
+                $(document).ready(function(){
+                
+                    Swal.fire(
+                        "Sikeres feltöltés!",
+                        "",
+                        "success"
+                      )
+                })
+                </script>
+                ';
                 $felhasznaloJavitás = $this->csatlakozas->query("INSERT INTO felhasznalok(nev,jelszo,user_kep_id) Values('".$nev."','".$jelszo."','".$kepid."')");
             }
 
@@ -171,20 +223,7 @@ class AdminFelulet
             $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok where nev = '".$nev."' and id != '".$_GET["userid"]."' ");
             if($adat = $felhasznalokiiras->fetch_assoc())
             {
-               echo '
-               <script type="text/javascript">
-
-               $(document).ready(function(){
-
-                Swal.fire({
-                    icon: "error",
-                    title: "Már van ilyen felhasználónév!",
-                    text: "Adj meg másikat!",
-                    footer: "<a></a>"
-                    )
-              })
-              </script>;
-               ';
+                
             }
             else
             {
@@ -202,7 +241,6 @@ class AdminFelulet
                 ';
                 
                 $felhasznaloJavitás = $this->csatlakozas->query("UPDATE felhasznalok SET nev = '".$nev."', jelszo = '".$jelszo."' , user_kep_id = '".$kepid."' WHERE id = '".$_GET['userid']."'");
-                //header("Location: /frontend/adminFelulet.php?adminmenu=1"); --> visszavisz az alap admin oldalra de nincs animáció
             }
         }
 
@@ -221,13 +259,13 @@ class AdminFelulet
                                 <input type="text" name="nevecske" value="'.$adat['nev'].'">
                                 <label for = "jelszocska">Jelszó:</label>
                                 <input type="text" name="jelszocska" value="'.$adat["jelszo"].'">
-                                <label for = "kepek">Azonositó:</label>
+                                <label for = "kepek">Profilkép:</label>
                                 <select name="kepek">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 </select>
                                 <br>
-                                <button type="submit"  name = "szerkesztes" class = "btn btn-primary">Szereksztés</button>
+                                <button type="submit"  name = "szerkesztes" class = "btn btn-primary">Szerkesztés</button>
                             </form>
                         </div>
                     </div>
@@ -326,7 +364,7 @@ class AdminFelulet
                             <input type="text" name="turafel" value="'.$adat["tura_felkapottsag"].'">
                             <label for = "megyeid">Megye id:</label>
                             <input type="text" name="megyeid" value="'.$adat["megye_id"].'">
-                            <button type="submit"  name = "szerkesztestura" class = "btn btn-primary">Szereksztés</button>
+                            <button type="submit"  name = "szerkesztestura" class = "btn btn-primary">Szerkesztés</button>
                         </form>
                     </div>
                 </div>
@@ -387,16 +425,28 @@ class AdminFelulet
             $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok where nev =  '".$_SESSION["nev"]."'");
             if($adat = $felhasznalokiiras->fetch_assoc())
             {
-            
-               print("<form action='' method='post'>
-               <input type='text' name='nev3' value=".$adat['nev']."><br>
-               <input type='text' name='jelszo3' value=".$adat['jelszo']."><br>
-               <select name='kepek4'>
-                <option value='1'>1</option>
-                <option value='2'>2</option>
-                </select>
-               <button type='submit'  name = 'profilszerkesztes'>Szereksztés</button>
-               </form>");
+               print '
+               <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Profil szerkesztése</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <form action = "" method = "post">
+                    <li class="list-group-item"><input type="text" name="nev3" value="'.$adat["nev"].'"></li>
+                    <li class="list-group-item"><input type="text" name="jelszo3" value="'.$adat["jelszo"].'"></li>
+                    <li class="list-group-item">
+                        <select name="kepek4">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </li>
+                    <li class="list-group-item">
+                        <button type="submit"  name = "profilszerkesztes" class = "btn btn-primary">Szerkesztés</button>
+                    </li>
+                </form>
+             </ul>
+             </div>
+               ';
             }
         }
         function ProfilUpdate($nev,$jelszo,$kepid)
