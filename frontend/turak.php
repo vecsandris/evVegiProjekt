@@ -21,7 +21,7 @@ $megye = new Megye();
         <i class="bi bi-funnel fs-4"></i>
       </div>
     </div>
-    <div id="szures_adatok" class = "row bottom-0 end-0 m-1 w-25" style = "display: none;">
+    <div id="szures_adatok" class = "row bottom-0 end-0 m-auto w-25" style = "display: none;">
     <form action="" method="post">
       <div>
         <?php

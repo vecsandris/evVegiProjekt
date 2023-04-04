@@ -4,17 +4,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Belépés</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="shortcut icon" href="../kepek/profilkepek/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-</head>
+<?php include("../components/header.php")?>
 <body>
             <main class="form-signin w-100 m-auto text-center">
                 <form action = "" method = "post">
@@ -50,7 +40,18 @@
                 $belepes ->Login($_POST["nev"],$_POST["jelszo"]);
                 }
                 else{
-                    print("Valamelyik adat hiányos kérem töltse ki rendesen");
+                    echo '<script type="text/javascript">
+
+                    $(document).ready(function(){
+                    
+                        Swal.fire(
+                            "Nem megfelelő adatokkal próbál belépni!",
+                            "Próbálja újra!",
+                            "error"
+                        )
+                    })
+                    </script>
+                    ';
                 }
             }
             //belépés után

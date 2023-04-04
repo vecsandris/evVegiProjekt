@@ -35,7 +35,7 @@
     </div>
     <div class="col-md-4">
       <div class = "card">
-      <img src= "../kepek/baranyavarmegye.png" alt="Baranya" style = "aspect-ratio: 16 / 9;">
+      <img src= "../kepek/baranyavarmegye.png" alt="Baranya" style = "aspect-ratio: 16 / 9; object-fit: cover;">
         <div class="card-body">
           <h5 class="card-title">Baranya vármegye</h5>
           <p class="card-text">Baranya vármegye Magyarország dél-délnyugati részén található, a Dél-Dunántúli régióban. A terület gazdag természeti kincsekben, változatos tájban, hegyekben, völgyekben, erdőkben és folyókban.</p>
@@ -44,7 +44,7 @@
     </div>
     <div class=" col-md-4">
       <div class = "card">
-        <img src="../kepek/bekesvarmegye.png" alt="Békés" style = "aspect-ratio: 16 / 9;">
+        <img src="../kepek/bekesvarmegye.png" alt="Békés" style = "aspect-ratio: 16 / 9; object-fit: cover;">
         <div class="card-body">
           <h5 class="card-title">Békés vármegye</h5>
           <p class="card-text">Békés vármegye Magyarország délkeleti részén található, a Dél-Alföldön. A területen számos érdekes természeti látnivaló található</p>
