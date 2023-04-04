@@ -21,22 +21,23 @@ class Belepes
         $belepes = $this->csatlakozas->query("SELECT * from felhasznalok where nev = '" . $nev . "' and jelszo = '" . $jelszo . "' ");
         if ($adat = $belepes->fetch_assoc()) {
             $_SESSION["nev"] = $adat['nev'];
+            
             $_SESSION["id"] = $adat["id"];
             $_SESSION["profilkep"] = $adat["user_kep_id"];
             header("Location: ./");
         } else {
             echo '<script type="text/javascript">
 
-                $(document).ready(function(){
-                
-                    Swal.fire(
-                        "Sikeres feltöltés!",
-                        "",
-                        "success"
-                      )
-                })
-                </script>
-                ';
+                    $(document).ready(function(){
+                    
+                        Swal.fire(
+                            "Nem megfelelő adatokkal próbál belépni!",
+                            "Próbálja újra!",
+                            "error"
+                        )
+                    })
+                    </script>
+                    ';
         }
     }
 }
@@ -54,12 +55,37 @@ class Regisztralas
 
         $nevcheck = $this->csatlakozas->query("SELECT * from felhasznalok where nev = '" . $nev . "'");
         if ($adat = $nevcheck->fetch_assoc()) {
-            print("Sikeretlen a regisztrálás már van ilyen felhasználó!");
-        } else {
-            if ($jelszo == $jelszo2) {
-                $regiszralas = $this->csatlakozas->query("INSERT INTO felhasznalok (nev,jelszo) values('" . $nev . "','" . $jelszo . "')");
-            } else {
-                print("Sikeretlen a regisztrálás, nem egyezik meg a két jelszó!");
+            echo '<script type="text/javascript">
+
+                    $(document).ready(function(){
+                    
+                        Swal.fire(
+                            "Már van ilyen felhasználó!",
+                            "Regisztráljon másik névvel!",
+                            "error"
+                        )
+                    })
+                    </script>
+                    ';
+        }
+         else {
+            if ($jelszo == $jelszo2) 
+            {
+                $regiszralas = $this->csatlakozas->query("INSERT INTO felhasznalok (nev,jelszo) values('" .$nev. "','" .$jelszo. "')");
+            } else
+             {
+                echo '<script type="text/javascript">
+
+                    $(document).ready(function(){
+                    
+                        Swal.fire(
+                            "Nem egyezik meg a két jelszó!!",
+                            "Próbálja újra!",
+                            "error"
+                        )
+                    })
+                    </script>
+                    ';
                 print("<form action='' method='post'>
                    <button type='submit' name='kilep'>Kilépés</button></form>");
             }
@@ -90,7 +116,7 @@ class Turak
     {
         $tartatlom = "";
         print("<div>");
-        $belepes = $this->csatlakozas->query("SELECT * from turak where megye_id = '" . $megyeid . "'");
+        $belepes = $this->csatlakozas->query("SELECT *, SUBSTRING(tura_leiras.tura_szoveg,1,100) AS turaSzoveg from turak INNER JOIN tura_leiras ON turak.id = tura_leiras.id where megye_id = '" . $megyeid . "'");
         while ($adat = $belepes->fetch_assoc()) {
             $tartatlom .= '
             <div class="col-md-4 p-3">
@@ -98,9 +124,7 @@ class Turak
                     <img src=../kepektura/' . $adat["tura_kep_nev"] . '.jpg class = "img-fluid" " style="aspect-ratio: 16 / 9; object-fit: cover;">
                     <div class = "card-body">
                         <h5 class="card-title">' . $adat["tura_nev"] . '</h5>
-                        <p class="card-text">Tura hossza: ' . $adat["tura_hossza"] . ' km
-                        Tura nehezseg: ' . $adat["tura_nehezseg"] . '
-                        Felkapottság: ' . $adat["tura_felkapottsag"] . '</p>
+                        <p>'.$adat["turaSzoveg"].'...</p>
                         <a href="../frontend/turaLeiras.php?tura_id=' . $adat["id"] . '" class="btn btn-primary">Részletek</a>
                     </div>
                 </div>
@@ -128,7 +152,7 @@ class Megye
         else if(isset($keresesEredmeny)){
             $belepes = $this->csatlakozas->query("SELECT * FROM megye WHERE megye_nev LIKE '%".$keresesEredmeny."%'");
         }else{
-            $belepes = $this->csatlakozas->query("SELECT * FROM megye");
+            $belepes = $this->csatlakozas->query("SELECT *, SUBSTRING(megye_leiras.megye_szoveg,1,800) as megyeLeiras FROM megye INNER JOIN megye_leiras ON megye.id = megye_leiras.id");
         }
         $_GET['idx'] = 0;
         while ($adat = $belepes->fetch_assoc()) {
@@ -139,7 +163,7 @@ class Megye
                         <img class="card-img-top" src="../kepek/' . $adat['megye_kep_nev'] . '.png" alt="' . $adat['megye_nev'] . '" style="aspect-ratio: 16 / 9; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">' . $adat['megye_nev'] . '</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+                            <p class="card-text">'.$adat["megyeLeiras"].'</p>
                             <a href="../frontend/turakInfo.php?idx='.$adat['id'].'" class="btn btn-primary">Részletek</a>
                         </div>
                     </div>
@@ -223,24 +247,40 @@ class AdminFelulet
             $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok where nev = '".$nev."' and id != '".$_GET["userid"]."' ");
             if($adat = $felhasznalokiiras->fetch_assoc())
             {
-                
+                if(isset($_POST["szerkesztes"])){
+                    echo '<script type="text/javascript">
+
+                    $(document).ready(function(){
+                    
+                        Swal.fire(
+                            "Már van ilyen felhasználónév!",
+                            "Adj meg másik nevet!",
+                            "error"
+                        )
+                    })
+                    </script>
+                    ';
+                }
             }
             else
             {
-                echo '<script type="text/javascript">
+                if(isset($_POST["szerkesztes"])){
+                    echo '<script type="text/javascript">
 
-                $(document).ready(function(){
-                
-                    Swal.fire(
-                        "Sikeres feltöltés!",
-                        "",
-                        "success"
-                      )
-                })
-                </script>
-                ';
+                    $(document).ready(function(){
+                    
+                        Swal.fire(
+                            "Sikeres feltöltés!",
+                            "",
+                            "success"
+                        )
+                    })
+                    </script>
+                    ';
+                }
                 
                 $felhasznaloJavitás = $this->csatlakozas->query("UPDATE felhasznalok SET nev = '".$nev."', jelszo = '".$jelszo."' , user_kep_id = '".$kepid."' WHERE id = '".$_GET['userid']."'");
+                $_SESSION["nev"] = $nev;
             }
         }
 

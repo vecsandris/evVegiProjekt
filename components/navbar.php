@@ -3,7 +3,7 @@
 ?>
 <nav class="navbar navbar-expand-lg fs-4">
   <div class="container-fluid">
-  <img src="../kepek/profilKepek/logo.png" alt="Oldal logo" style="width:100px;" class="rounded-pill float-start"> 
+  <img src="../kepek/profilKepek/logo.png" alt="Oldal logo" style="width:120px;" class="rounded-pill float-start"> 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -47,13 +47,13 @@
                   if(isset($_SESSION['nev'])){
                 ?>
                   <li class = "nav-item p-2">
+                       <?php print  "Üdv ".$_SESSION["nev"]."!";?> 
+                  </li>
+                  <li class = "nav-item p-2">
                     <a href="../server/kilepes.php" class = "btn btn-primary">Kijelentkezés</a>
                       <!-- <form action="" method="post">
                         <button type="submit" class="w-100 btn btn-primary" name = "kilep">Kijelentkezés</button>
                       </form> -->
-                  </li>
-                  <li class = "nav-item p-2">
-                       <?php print  "Üdv ".$_SESSION["nev"]."!";?>
                   </li>
                   <li class = "nav-item p-2">
                     <a class="navbar-brand" href="../server/belepes.php">
