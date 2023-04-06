@@ -3,6 +3,8 @@
 <?php
     include("../server/classes.php");
     include("../components/header.php");
+    $turak = new Turak();
+    $profil = new FelhasznaloiProfil();
 ?>
 <body class="" style="background-image: url('../kepek/profilKepek/Background2.png'); background-repeat: no-repeat; background-size:cover;">
  <?php
@@ -10,7 +12,14 @@
   ?>
 
 <main>
-  asd
+  <?php
+    if(isset($_GET["tura_id"])){
+      $turak->EgyTuraKiiratas($_GET["tura_id"]);
+    }
+    if(isset($_POST["mentes"])){
+      $profil->turaMentes($_GET["tura_id"]);
+    }
+  ?>
 </main>
 
 <?php

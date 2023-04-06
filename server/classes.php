@@ -71,7 +71,7 @@ class Regisztralas
          else {
             if ($jelszo == $jelszo2) 
             {
-                $regiszralas = $this->csatlakozas->query("INSERT INTO felhasznalok (nev,jelszo) values('" .$nev. "','" .$jelszo. "')");
+                $regiszralas = $this->csatlakozas->query("INSERT INTO felhasznalok (nev,jelszo, user_kep_id) values('" .$nev. "','" .$jelszo. "', 1)");
             } else
              {
                 echo '<script type="text/javascript">
@@ -134,6 +134,39 @@ class Turak
         print("</div>");
         print($tartatlom);
     }
+    function EgyTuraKiiratas($turaId){
+        $turaKiir = $this->csatlakozas->query("SELECT *, SUBSTRING(tura_leiras.tura_szoveg,1,800) AS turaSzoveg FROM turak INNER JOIN tura_leiras ON turak.id = tura_leiras.id WHERE turak.id = ".$turaId." LIMIT 1");
+        while($adat = $turaKiir->fetch_assoc()){
+            print '
+            <div class="container px-4 py-5" id="featured-3">
+            <h2 class="pb-2 border-bottom">Túra információk</h2>
+            <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+              <div class="feature col">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+                  <img src = "../kepektura/'.$adat["tura_kep_nev"].'.jpg" alt = "'.$adat["tura_nev"].'" class = "img-fluid">
+                </div>
+              </div>
+              <div class="feature col">
+                <h5 class="fs-2">'.$adat["tura_nev"].'</h5>
+                <p>Túra nehézsége: '.$adat["tura_nehezseg"].'</p>
+                <p>Túra hossza: '.$adat["tura_hossza"].'km</p>
+                <p>Túra felkapottsága:</p>
+                <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="'.$adat["tura_felkapottsag"].'" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar " style = "width: '.$adat["tura_felkapottsag"].'%;">'.$adat["tura_felkapottsag"].'%</div>
+                </div>
+                <br>
+                <p>'.$adat["turaSzoveg"].'</p>
+              </div>
+              <form action = "" method = "post">
+              <div class="feature col">
+                <button type = "submit" name = "mentes" class = ""><i class="bi bi-bookmark-fill" style = "font-size: 3rem;"></i></button>
+              </div>
+              </form>
+            </div>
+          </div>
+            ';
+        }
+    }
 }
 class Megye
 {
@@ -147,16 +180,14 @@ class Megye
         $tartalom = "";
         $belepes = "";
         if(isset($megyeNev)){
-                $belepes=$this->csatlakozas->query("SELECT * FROM megye WHERE id IN (".join(",",$megyeNev).")");
-        }
-        else if(isset($keresesEredmeny)){
-            $belepes = $this->csatlakozas->query("SELECT * FROM megye WHERE megye_nev LIKE '%".$keresesEredmeny."%'");
+            $belepes = $this->csatlakozas->query("SELECT *, SUBSTRING(megye_leiras.megye_szoveg,1,800) AS megyeLeiras FROM megye INNER JOIN megye_leiras ON megye.id = megye_leiras.id WHERE megye.id IN (".join(",",$megyeNev).")");
+        }else if(isset($keresesEredmeny)){
+            $belepes = $this->csatlakozas->query("SELECT *, SUBSTRING(megye_leiras.megye_szoveg,1,800) AS megyeLeiras FROM megye INNER JOIN megye_leiras ON megye.id = megye_leiras.id WHERE megye_nev LIKE '%".$keresesEredmeny."%'");
         }else{
-            $belepes = $this->csatlakozas->query("SELECT *, SUBSTRING(megye_leiras.megye_szoveg,1,800) as megyeLeiras FROM megye INNER JOIN megye_leiras ON megye.id = megye_leiras.id");
+            $belepes = $this->csatlakozas->query("SELECT *, SUBSTRING(megye_leiras.megye_szoveg,1,800) AS megyeLeiras FROM megye INNER JOIN megye_leiras ON megye.id = megye_leiras.id");
         }
         $_GET['idx'] = 0;
         while ($adat = $belepes->fetch_assoc()) {
-            
             $tartalom.='
                 <div class="col-md-4 p-3">
                     <div class="card">
@@ -168,7 +199,6 @@ class Megye
                         </div>
                     </div>
                 </div>
-
                 ';
             }
             print($tartalom);
@@ -472,8 +502,11 @@ class AdminFelulet
                 </div>
                 <ul class="list-group list-group-flush">
                     <form action = "" method = "post">
+                    <label for = "nev3">Név:</label>
                     <li class="list-group-item"><input type="text" name="nev3" value="'.$adat["nev"].'"></li>
+                    <label for = "jelszo3">Jelszó:</label>
                     <li class="list-group-item"><input type="text" name="jelszo3" value="'.$adat["jelszo"].'"></li>
+                    <label for = "kepek4">Profilkép:</label>
                     <li class="list-group-item">
                         <select name="kepek4">
                             <option value="1">1</option>
@@ -494,13 +527,74 @@ class AdminFelulet
             $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok where nev = '".$nev."' and id != '".$_SESSION["id"]."' ");
             if($adat = $felhasznalokiiras->fetch_assoc())
             {
-               print("Már van ilyen felhasználó név");
+                echo '<script type="text/javascript">
+
+                    $(document).ready(function(){
+                    
+                        Swal.fire(
+                            "Már van ilyen felhasználónév!",
+                            "Adjon meg másik nevet!",
+                            "error"
+                        )
+                    })
+                    </script>
+                    ';
             }
             else
             {
-                print("siker");
+                echo '<script type="text/javascript">
+
+                $(document).ready(function(){
+                
+                    Swal.fire(
+                        "Sikeres Feltöltés!",
+                        "",
+                        "success"
+                      )
+                })
+                </script>
+                ';
                 $felhasznaloJavitás = $this->csatlakozas->query("UPDATE felhasznalok SET nev = '".$nev."', jelszo = '".$jelszo."' , user_kep_id = '".$kepid."' WHERE id = '".$_SESSION["id"]."'");
             }
+        }
+        function TuraMentes($mentettTura){
+            if(isset($mentettTura)){
+                echo '<script type="text/javascript">
+
+                $(document).ready(function(){
+                
+                    Swal.fire(
+                        "Sikeres Mentés!",
+                        "",
+                        "success"
+                      )
+                })
+                </script>;
+                ';
+                $this->csatlakozas->query("INSERT INTO felhasznalok_tura (felhasznalo_id, tura_id) VALUES (".$_SESSION["id"].", ".$mentettTura.")");
+            }else{
+                echo '<script type="text/javascript">
+
+                $(document).ready(function(){
+                
+                    Swal.fire(
+                        "Sikertelen mentés!",
+                        "Próbálja újra!",
+                        "error"
+                    )
+                })
+                </script>
+                ';
+            }
+        }
+        function MentettTuraKiiras(){
+            $turaMentett = $this->csatlakozas->query("SELECT * FROM felhasznalok_tura INNER JOIN turak ON felhasznalok_tura.id = turak.id WHERE felhasznalok_tura.felhasznalo_id = ".$_SESSION["id"]."");
+            while($adat = $turaMentett->fetch_assoc()){
+                print '<li style = "list-style:none;"><a href = "../server/torles.php?id='.$adat["id"].'" class = "btn btn-danger m-2"><i class="bi bi-x"></i></a>'.$adat["tura_nev"].'</li>';
+            }
+        }
+        function TuraTorles($id){
+            $this->csatlakozas->query("DELETE FROM felhasznalok_tura WHERE id = ".$id."");
         }
     }
 

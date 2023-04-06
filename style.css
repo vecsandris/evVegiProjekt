@@ -24,6 +24,11 @@ body {
     min-height: 100vh;
     background-color: #f5f5f5;
 }
+@media screen and (max-width: 1024px) {
+    body{
+      display: block;
+    }
+}
 nav{
   z-index: 99999;
   grid-area: navbar;
