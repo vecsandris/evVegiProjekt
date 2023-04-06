@@ -42,20 +42,6 @@
                     $(document).ready(function(){
                     
                         Swal.fire(
-                            "Valamelyik adat hiányos, kérem töltse ki helyesen!",
-                            "Próbálja újra!",
-                            "error"
-                        )
-                    })
-                    </script>
-                    ';
-                }
-                else{
-                    echo '<script type="text/javascript">
-
-                    $(document).ready(function(){
-                    
-                        Swal.fire(
                             "Sikeres Regisztráció!",
                             "Jelentkezzen be!",
                             "success"
@@ -64,6 +50,20 @@
                     </script>
                     ';
                     $regiszt ->Regist($_POST["nev2"],$_POST["jelszocska"],$_POST["jelszocska2"]);
+                }
+                else{
+                    echo '<script type="text/javascript">
+
+                    $(document).ready(function(){
+                    
+                        Swal.fire(
+                            "Valamelyik adat hiányos, kérem töltse ki helyesen!",
+                            "Próbálja újra!",
+                            "error"
+                        )
+                    })
+                    </script>
+                    ';
                 }
             }
             if(isset($_POST["kilep"]))

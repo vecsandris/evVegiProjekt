@@ -14,7 +14,7 @@
 
 <main>
 <div class = "text-white bottom-50 end-50 m-5 p-5">
-  <h1 style = "font-size: 60px">Találd meg kedvenc túra útvonalad.</h1>
+  <h1 style = "font-size: clamp(2rem,10vw,4rem);">Találd meg kedvenc túra útvonalad.</h1>
   <form action="" method="post">
       <a href = "../frontend/turak.php" class = "btn text-white bg-dark">Felfedezés</a>
   </form>
@@ -23,28 +23,27 @@
 
 <div class = "container">
   <div class = "row g-5">
-
-    <div class="col-md-4">
+    <div class="col-md-4 p-3">
       <div class = "card">
-        <img src="../kepek/bacskiskunvarmegye.png" alt="Bács-Kiskun" style = "aspect-ratio: 16 / 9; object-fit: cover;">
+        <img src="../kepek/bacskiskunvarmegye.png" alt="Bács-Kiskun" style = "aspect-ratio: 16 / 9; object-fit: cover;" class = "card-img-top">
         <div class="card-body">
           <h5 class="card-title">Bács-Kiskun vármegye</h5>
           <p class="card-text">Bács-Kiskun vármegye Magyarország déli részén található, és gazdag természeti kincsekben, változatos tájban, sík vidékeken és dombokban gazdag terület.</p>
         </div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 p-3">
       <div class = "card">
-      <img src= "../kepek/baranyavarmegye.png" alt="Baranya" style = "aspect-ratio: 16 / 9; object-fit: cover;">
+      <img src= "../kepek/baranyavarmegye.png" alt="Baranya" style = "aspect-ratio: 16 / 9; object-fit: cover;" class = "card-img-top">
         <div class="card-body">
           <h5 class="card-title">Baranya vármegye</h5>
           <p class="card-text">Baranya vármegye Magyarország dél-délnyugati részén található, a Dél-Dunántúli régióban. A terület gazdag természeti kincsekben, változatos tájban, hegyekben, völgyekben, erdőkben és folyókban.</p>
         </div>
      </div>
     </div>
-    <div class=" col-md-4">
+    <div class="col-md-4 p-3">
       <div class = "card">
-        <img src="../kepek/bekesvarmegye.png" alt="Békés" style = "aspect-ratio: 16 / 9; object-fit: cover;">
+        <img src="../kepek/bekesvarmegye.png" alt="Békés" style = "aspect-ratio: 16 / 9; object-fit: cover;" class = "card-img-top">
         <div class="card-body">
           <h5 class="card-title">Békés vármegye</h5>
           <p class="card-text">Békés vármegye Magyarország délkeleti részén található, a Dél-Alföldön. A területen számos érdekes természeti látnivaló található</p>

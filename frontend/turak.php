@@ -28,7 +28,7 @@ $megye = new Megye();
           $megyeNevek = $megye->MegyeSzuro();
         ?>
       </div>
-      <button type="submit" class = "btn btn-primary">Szűrés</button>
+      <button type="submit" class = "btn btn-primary" name = "kereses">Szűrés</button>
     </form>
   </div>
     <div class="row">
