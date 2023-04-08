@@ -24,6 +24,21 @@
           $adminlekeres->ProfilUpdate($_POST["nev3"],$_POST["jelszo3"],$_POST["kepek4"]);
           $_POST = array();
           }
+          if(isset($_SESSION["toroltTura"]) && !empty($_SESSION["toroltTura"])){
+            echo '<script type="text/javascript">
+
+            $(document).ready(function(){
+            
+                Swal.fire(
+                    "Sikeres Törlés!",
+                    "",
+                    "success"
+                  )
+            })
+            </script>;
+            ';
+            unset($_SESSION["toroltTura"]);
+          }
     ?>
         </div>
         <div class = "feature col">

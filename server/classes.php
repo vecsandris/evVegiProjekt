@@ -134,40 +134,16 @@ class Turak
         print("</div>");
         print($tartatlom);
     }
-    function EgyTuraKiiratas($turaId){
-        $turaKiir = $this->csatlakozas->query("SELECT *, SUBSTRING(tura_leiras.tura_szoveg,1,800) AS turaSzoveg FROM turak INNER JOIN tura_leiras ON turak.id = tura_leiras.id WHERE turak.id = ".$turaId." LIMIT 1");
-        while($adat = $turaKiir->fetch_assoc()){
-            print '
-            <div class="container px-4 py-5" id="featured-3">
-            <h2 class="pb-2 border-bottom">Túra információk</h2>
-            <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-              <div class="feature col">
-                <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
-                  <img src = "../kepektura/'.$adat["tura_kep_nev"].'.jpg" alt = "'.$adat["tura_nev"].'" class = "img-fluid">
-                </div>
-              </div>
-              <div class="feature col">
-                <h5 class="fs-2">'.$adat["tura_nev"].'</h5>
-                <p>Túra nehézsége: '.$adat["tura_nehezseg"].'</p>
-                <p>Túra hossza: '.$adat["tura_hossza"].'km</p>
-                <p>Túra felkapottsága:</p>
-                <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="'.$adat["tura_felkapottsag"].'" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar " style = "width: '.$adat["tura_felkapottsag"].'%;">'.$adat["tura_felkapottsag"].'%</div>
-                </div>
-                <br>
-                <p>'.$adat["turaSzoveg"].'</p>
-              </div>
-              <form action = "" method = "post">
-              <div class="feature col">
-                <button type = "submit" name = "mentes" class = ""><i class="bi bi-bookmark-fill" style = "font-size: 3rem;"></i></button>
-              </div>
-              </form>
-            </div>
-          </div>
-            ';
+    function turaCim($id){
+        $cim = $this->csatlakozas->query("SELECT * FROM megye WHERE id = ".$id."");
+        while($adat = $cim->fetch_assoc()){
+            print $adat["megye_nev"];
         }
     }
-}
+    function EgyTuraKiiratas($turaId){
+        
+        }
+    }
 class Megye
 {
     public mysqli $csatlakozas;
@@ -223,25 +199,28 @@ class AdminFelulet
         function __construct()
         {
             $this->csatlakozas = new mysqli("localhost","root","","turazas");
-
-
         }
         function Felhasznalok()
-        {            print("<form action='' method='post'>
-            <button type='submit'  name='felhasznalohozzaadas'>Felhasználó hozzáadása</button>
-            </form>");
+        {
+            print '
+            <form action="" method="post">
+                <button type="submit" name="felhasznalohozzaadas" class = "btn btn-primary">Felhasználó hozzáadása</button>
+             </form>
+            ';
             $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok where nev != 'admin'");
             while($adat = $felhasznalokiiras->fetch_assoc())
             {
                print(
                 '
-                 <div class="card" style="width: 18rem;">
-                 <img src=../kepek/profilKepek/'.$adat["user_kep_id"].'.jpg class = "card-img-top"">
+              <div class="feature col">
+                <div class="card" style="width: 18rem;">
+                    <img src=../kepek/profilKepek/'.$adat["user_kep_id"].'.jpg class = "card-img-top"">
                     <div class="card-body">
-                      <p>'.$adat['nev'].'</p>
+                           <p>'.$adat['nev'].'</p>
                     </div>
                     <a href="?userid='.$adat['id'].'" class = "btn btn-primary">Szerkesztés</a>
-               </div>
+                </div>
+              </div>
                  '
                );
             }
@@ -270,6 +249,10 @@ class AdminFelulet
                 $felhasznaloJavitás = $this->csatlakozas->query("INSERT INTO felhasznalok(nev,jelszo,user_kep_id) Values('".$nev."','".$jelszo."','".$kepid."')");
             }
 
+        }
+        function felhasznaloTorles($id){
+            $this->csatlakozas->query("DELETE FROM felhasznalok WHERE id = ".$id."");
+            header("Location: ./adminFelulet.php?adminmenu=1");
         }
 
         function FelhasznaloUpdate($nev,$jelszo,$kepid)
@@ -335,7 +318,8 @@ class AdminFelulet
                                 <option value="2">2</option>
                                 </select>
                                 <br>
-                                <button type="submit"  name = "szerkesztes" class = "btn btn-primary">Szerkesztés</button>
+                                <button type="submit"  name = "szerkesztes" class = "btn btn-primary w-100">Szerkesztés</button>
+                                <button type="submit" name="felhasznaloTorles" class = "btn btn-danger w-100">Felhasználó törlése</button>
                             </form>
                         </div>
                     </div>
@@ -369,29 +353,37 @@ class AdminFelulet
         {
             $tartalom = '';
             $turakiiras = $this->csatlakozas->query("SELECT *, SUBSTRING(tura_leiras.tura_szoveg, 1, 200) AS vagott FROM tura_leiras INNER JOIN turak ON tura_leiras.id=turak.id");
-            print("<form action='' method='post'>
-            <button type='submit'  name='turahozaadas' >Tura hozzáadás</button>
-            </form>");
+            print
+            '<form action="" method="post">
+            <button type="submit"  name="turahozaadas" class = "btn btn-primary">Tura hozzáadás</button>
+            </form>';
             if(isset($_POST["turahozaadas"]))
             {
-
-                print("<form action='' method='post' enctype='multipart/form-data'>
-                <label>Tura neve</label>
-                <input type='text' name='turanev1'><br>
-                <label>Tura hossza</label>
-                <input type='number 'step='any' name='turahossz1'><br>
-                <label>Tura nehezsége</label>
-                <input type='number' name='turanehez1'><br>
-                <label>Tura felkapotság</label>
-                <input type='number' name='turafel1'><br>
-                <label>megye id</label>
-                <input type='number' name='megyeid1'><br>
-                <label>Kép neve</label>
-                <input type='text' name='tura_kep'><br>
-                <label>Kép fájl</label>
-                <input type='file' name='kep'><br>
-                <button type='submit'  name = 'turaadd'>Tura hozáadása</button>
-                </form>");
+                print '
+                <div class="col-sm-4 p-3">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <form action = "" method = "post">
+                            <label>Túra neve:</label>
+                            <input type="text" name="turanev1">
+                            <label>Túra hossza:</label>
+                            <input type="number "step="any" name="turahossz1">
+                            <label>Túra nehezsége:</label>
+                            <input type="number" name="turanehez1">
+                            <label>Túra felkapottság:</label>
+                            <input type="number" name="turafel1">
+                            <label>Megye id:</label>
+                            <input type="number" name="megyeid1">
+                            <label>Kép neve:</label>
+                            <input type="text" name="tura_kep"><br/>
+                            <label>Kép fájl:</label>
+                            <input type="file" name="kep">
+                            <button type="submit"  name = "turaadd" class = "btn btn-primary">Túra hozzáadása</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                ';
                 
             }
             while($adat = $turakiiras->fetch_assoc())
@@ -435,6 +427,7 @@ class AdminFelulet
                             <label for = "megyeid">Megye id:</label>
                             <input type="text" name="megyeid" value="'.$adat["megye_id"].'">
                             <button type="submit"  name = "szerkesztestura" class = "btn btn-primary">Szerkesztés</button>
+                            <button type="submit"  name = "turaTorles" class = "btn btn-danger">Túra törlése</button>
                         </form>
                     </div>
                 </div>
@@ -442,6 +435,10 @@ class AdminFelulet
                
             }
             print($tartalom);
+        }
+        function turaTorles($id){
+            $this->csatlakozas->query("DELETE FROM turak WHERE id = ".$id."");
+            header("Location:  /frontend/adminFelulet.php?adminmenu=2");
         }
         function TuraUpdate($turanev,$turahossz,$turanehez,$turafelkap,$megye_id)
         {
@@ -475,7 +472,7 @@ class AdminFelulet
                         "success"
                       )
                 })
-                </script>;
+                </script>
                 ';
                 $turaJavitás = $this->csatlakozas->query("UPDATE turak SET tura_nev = '".$turanev."', tura_hossza = '".$turahossz."' , tura_nehezseg = '".$turanehez."',
                  tura_felkapottsag = '".$turafelkap."' ,megye_id = '".$megye_id."' WHERE id = '".$_GET['turaid']."'");
@@ -558,7 +555,8 @@ class AdminFelulet
             }
         }
         function TuraMentes($mentettTura){
-            if(isset($mentettTura)){
+            $vanEIlyenMentettTura = $this->csatlakozas->query("SELECT * FROM felhasznalok_tura WHERE felhasznalo_id = ".$_SESSION["id"]." AND tura_id = ".$mentettTura."");
+            if(isset($mentettTura) && $vanEIlyenMentettTura->num_rows == 0){
                 echo '<script type="text/javascript">
 
                 $(document).ready(function(){
@@ -578,8 +576,8 @@ class AdminFelulet
                 $(document).ready(function(){
                 
                     Swal.fire(
-                        "Sikertelen mentés!",
-                        "Próbálja újra!",
+                        "Már lementette egyszer!",
+                        "Isten ments!",
                         "error"
                     )
                 })
@@ -588,13 +586,14 @@ class AdminFelulet
             }
         }
         function MentettTuraKiiras(){
-            $turaMentett = $this->csatlakozas->query("SELECT * FROM felhasznalok_tura INNER JOIN turak ON felhasznalok_tura.id = turak.id WHERE felhasznalok_tura.felhasznalo_id = ".$_SESSION["id"]."");
+            $turaMentett = $this->csatlakozas->query("SELECT *,felhasznalok_tura.id AS torlesId FROM felhasznalok_tura INNER JOIN turak ON felhasznalok_tura.tura_id = turak.id WHERE felhasznalok_tura.felhasznalo_id = ".$_SESSION["id"]."");
             while($adat = $turaMentett->fetch_assoc()){
-                print '<li style = "list-style:none;"><a href = "../server/torles.php?id='.$adat["id"].'" class = "btn btn-danger m-2"><i class="bi bi-x"></i></a>'.$adat["tura_nev"].'</li>';
+                print '<li style = "list-style:none;"><a href = "../server/torles.php?id='.$adat["torlesId"].'" class = "btn btn-danger m-2"><i class="bi bi-x"></i></a>'.$adat["tura_nev"].'</li>';
             }
         }
         function TuraTorles($id){
             $this->csatlakozas->query("DELETE FROM felhasznalok_tura WHERE id = ".$id."");
+            $_SESSION["toroltTura"] = $id;
         }
     }
 

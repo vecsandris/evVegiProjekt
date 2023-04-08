@@ -24,29 +24,32 @@
 <div class = "container">
   <div class = "row g-5">
     <div class="col-md-4 p-3">
-      <div class = "card">
+      <div class = "card text-center">
         <img src="../kepek/bacskiskunvarmegye.png" alt="Bács-Kiskun" style = "aspect-ratio: 16 / 9; object-fit: cover;" class = "card-img-top">
         <div class="card-body">
           <h5 class="card-title">Bács-Kiskun vármegye</h5>
           <p class="card-text">Bács-Kiskun vármegye Magyarország déli részén található, és gazdag természeti kincsekben, változatos tájban, sík vidékeken és dombokban gazdag terület.</p>
+          <a href = "/frontend/turakInfo.php?idx=5" class = "btn btn-primary">Részletek</a>
         </div>
       </div>
     </div>
     <div class="col-md-4 p-3">
-      <div class = "card">
+      <div class = "card text-center">
       <img src= "../kepek/baranyavarmegye.png" alt="Baranya" style = "aspect-ratio: 16 / 9; object-fit: cover;" class = "card-img-top">
         <div class="card-body">
           <h5 class="card-title">Baranya vármegye</h5>
           <p class="card-text">Baranya vármegye Magyarország dél-délnyugati részén található, a Dél-Dunántúli régióban. A terület gazdag természeti kincsekben, változatos tájban, hegyekben, völgyekben, erdőkben és folyókban.</p>
+          <a href = "/frontend/turakInfo.php?idx=6" class = "btn btn-primary">Részletek</a>
         </div>
      </div>
     </div>
     <div class="col-md-4 p-3">
-      <div class = "card">
+      <div class = "card text-center">
         <img src="../kepek/bekesvarmegye.png" alt="Békés" style = "aspect-ratio: 16 / 9; object-fit: cover;" class = "card-img-top">
         <div class="card-body">
           <h5 class="card-title">Békés vármegye</h5>
           <p class="card-text">Békés vármegye Magyarország délkeleti részén található, a Dél-Alföldön. A területen számos érdekes természeti látnivaló található</p>
+          <a href = "/frontend/turakInfo.php?idx=7" class = "btn btn-primary">Részletek</a>
         </div>
       </div>
     </div>

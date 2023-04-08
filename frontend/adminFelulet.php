@@ -47,11 +47,33 @@ include("../components/header.php");
 </div>
 <?php
   }
+  if(isset($_GET["adminmenu"])){
+    if($_GET["adminmenu"]==1){
+      print '
+      <div class = "text-black bottom-50 end-50 m-5 p-5">
+          <h1 style = "font-size: clamp(2rem,10vw,4rem);">Felhasználók szerkesztése.</h1>
+      </div>
+      ';
+    }
+  }
+  ?>
+<div class="container px-4 py-5" id="featured-3">
+  <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+  <?php
+  if(!isset($_POST["felhasznalohozzaadas"])){
   if(isset($_GET["adminmenu"]))
   {
+    $adminlekeres = new AdminFelulet();
+      if($_GET["adminmenu"]==1)
+      {
+          $adminlekeres->Felhasznalok();
+      }
+      ?>
+    </div>
+</div>
+      <?php
       if($_GET["adminmenu"]==2)
       {
-          $adminlekeres = new AdminFelulet();
           ?>
           <div class = "container text-center">
               <div class = "row">
@@ -63,6 +85,35 @@ include("../components/header.php");
           <?php
       }
   }
+}
+if(isset($_POST["felhasznalohozzaadas"]))
+      {
+      print
+        '
+          <div class="card text-center" style="width: 19rem; height: 11rem;">
+            <div class="card-body">
+            <form action="" method="post">
+              <label for="nevecske2">Név:</label>
+              <input type="text" name="nevecske2">
+              <label for="jelszocska2">Jelszó:</label>
+              <input type="text" name="jelszocska2">
+              <label for = "kepek2">Profilkép:</label>
+              <select name="kepek2">
+                <option value="1">1</option>
+                <option value="2">2</option>
+              </select>
+              </div>
+              <button type="submit"  name = "hozzaadas" class = "btn btn-primary">Hozzáadás</button>
+              </form>
+            </div>
+        </div>
+          ';
+      }
+  if(isset($_GET["userid"]))
+  {
+    $adminlekeres = new AdminFelulet();
+    $adminlekeres->FelhasznaloSzerkesztes();
+  }
 ?>
 
 <?php
@@ -71,20 +122,6 @@ include("../components/header.php");
         session_destroy();
         header("location: ../frontend/fooldal.php");
     }
-    if(isset($_GET["adminmenu"]))
-    {
-        if($_GET["adminmenu"]==1)
-        {
-            $adminlekeres = new AdminFelulet();
-            $adminlekeres->Felhasznalok();
-        }
-    }
-    if(isset($_GET["userid"]))
-    {
-        $adminlekeres = new AdminFelulet();
-        $adminlekeres->FelhasznaloSzerkesztes();
-    }
-
     if(isset($_POST["szerkesztes"]))
     {
         $adminlekeres = new AdminFelulet();
@@ -106,23 +143,21 @@ include("../components/header.php");
       $adminlekeres->TuraHozaadass($_POST["turanev1"],$_POST["turahossz1"],$_POST["turanehez1"],$_POST["turafel1"],$_POST["megyeid1"],$_POST["tura_kep"]);
 
     }
-    if(isset($_POST["felhasznalohozzaadas"]))
-    {
-      print("<form action='' method='post'>
-      <input type='text' name='nevecske2' ><br>
-      <input type='text' name='jelszocska2'><br>
-      <select name='kepek2'>
-       <option value='1'>1</option>
-       <option value='2'>2</option>
-       </select>
-      <button type='submit'  name = 'hozzaadas'>Hozzáadás</button>
-      </form>");
-    }
     if(isset($_POST["hozzaadas"]))
     {
-      $adminlekeres = new AdminFelulet();
-      $adminlekeres-> FelhasznaloHozzaadas($_POST["nevecske2"],$_POST["jelszocska2"],$_POST["kepek2"]);
-      
+      if(!empty($_POST["nevecske2"]) && $_POST["jelszocska2"] && $_POST["kepek2"]){
+        $adminlekeres = new AdminFelulet();
+        $adminlekeres-> FelhasznaloHozzaadas($_POST["nevecske2"],$_POST["jelszocska2"],$_POST["kepek2"]);
+        $_POST = array();
+      }
+    }
+    if(isset($_POST["felhasznaloTorles"])){
+      $admin = new AdminFelulet();
+      $admin->felhasznaloTorles($_GET["userid"]);
+    }
+    if(isset($_POST["turaTorles"])){
+      $admin = new AdminFelulet();
+      $admin->turaTorles($_GET["turaid"]);
     }
   
 ?>
