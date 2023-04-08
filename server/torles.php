@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("../server/classes.php");
 $profil = new FelhasznaloiProfil();
     if(isset($_GET["id"])){

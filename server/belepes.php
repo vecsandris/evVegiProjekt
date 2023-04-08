@@ -24,6 +24,7 @@
                 <form action="" method="post">
                 <button class="w-100 btn btn-lg btn-primary" type="submit" name = "regiszt">Regisztráció</button>
                 </form>
+                <a href = "../frontend/fooldal.php" class = "btn btn-info">Vissza a főoldalra</a>
           </main>
           <?php
             //regisztráció
