@@ -9,13 +9,8 @@ class Belepes
     }
     function Login($nev, $jelszo)
     {
-<<<<<<< Updated upstream
-
-        $belepes = $this->csatlakozas->query("SELECT * from felhasznalok where nev = '" . $nev . "' and jelszo = '" . $jelszo . "' ");
-=======
         $belepes = $this->csatlakozas->query("SELECT * from felhasznalok
          where nev = '" . $nev . "' and jelszo = '" . $jelszo . "' ");
->>>>>>> Stashed changes
         if ($adat = $belepes->fetch_assoc()) {
             $_SESSION["nev"] = $adat['nev'];
             $_SESSION["id"] = $adat["id"];
@@ -39,14 +34,6 @@ class Regisztralas
 
         $nevcheck = $this->csatlakozas->query("SELECT * from felhasznalok where nev = '" . $nev . "'");
         if ($adat = $nevcheck->fetch_assoc()) {
-<<<<<<< Updated upstream
-            print("Sikeretlen a regisztrálás már van ilyen felhasználó!");
-        } else {
-            if ($jelszo == $jelszo2) {
-                $regiszralas = $this->csatlakozas->query("INSERT INTO felhasznalok (nev,jelszo) values('" . $nev . "','" . $jelszo . "')");
-            } else {
-                print("Sikeretlen a regisztrálás, nem egyezik meg a két jelszó!");
-=======
             echo '<script type="text/javascript">
 
                     $(document).ready(function(){
@@ -81,7 +68,6 @@ class Regisztralas
                         </script>
                         ';
     
->>>>>>> Stashed changes
                 print("<form action='' method='post'>
                    <button type='submit' name='kilep'>Kilépés</button></form>");
             }
@@ -430,18 +416,6 @@ class AdminFelulet
              where nev =  '".$_SESSION["nev"]."'");
             if($adat = $felhasznalokiiras->fetch_assoc())
             {
-<<<<<<< Updated upstream
-            
-               print("<form action='' method='post'>
-               <input type='text' name='nev3' value=".$adat['nev']."><br>
-               <input type='text' name='jelszo3' value=".$adat['jelszo']."><br>
-               <select name='kepek4'>
-                <option value='1'>1</option>
-                <option value='2'>2</option>
-                </select>
-               <button type='submit'  name = 'profilszerkesztes'>Szereksztés</button>
-               </form>");
-=======
                print '
                <div class="card">
                 <div class="card-body">
@@ -469,7 +443,6 @@ class AdminFelulet
              </ul>
              </div>
                ';
->>>>>>> Stashed changes
             }
         }
         function ProfilUpdate($nev,$jelszo,$kepid)
@@ -482,10 +455,6 @@ class AdminFelulet
             }
             else
             {
-<<<<<<< Updated upstream
-                print("siker");
-                $felhasznaloJavitás = $this->csatlakozas->query("UPDATE felhasznalok SET nev = '".$nev."', jelszo = '".$jelszo."' , user_kep_id = '".$kepid."' WHERE id = '".$_SESSION["id"]."'");
-=======
                 echo '<script type="text/javascript">
 
                 $(document).ready(function(){
@@ -500,7 +469,6 @@ class AdminFelulet
                 ';
                 $felhasznaloJavitás = $this->csatlakozas->query("UPDATE felhasznalok SET
                  nev = '".$nev."', jelszo = '".$jelszo."' , user_kep_id = '".$kepid."' WHERE id = '".$_SESSION["id"]."'");
->>>>>>> Stashed changes
             }
         }
     }

@@ -63,9 +63,6 @@
             {
                 if(isset($_POST["nev2"])&&isset($_POST["jelszocska"])&&isset($_POST["jelszocska2"]))
                 {
-<<<<<<< Updated upstream
-                    $regiszt ->Regist($_POST["nev2"],$_POST["jelszocska"],$_POST["jelszocska2"]);
-=======
                     echo '<script type="text/javascript">
 
                     $(document).ready(function(){
@@ -79,7 +76,6 @@
                     </script>
                     ';
                     $regiszt ->Regist($_POST["nev2"],$_POST["jelszocska"],$_POST["jelszocska2"],$_POST["pfp2"]);
->>>>>>> Stashed changes
                 }
                 else{
                     print("Valamelyik adat hiányos kérem töltse ki rendesen");
