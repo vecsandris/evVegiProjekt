@@ -12,9 +12,15 @@ class Kilepes{
 class Belepes
 {
     public mysqli $csatlakozas;
+    public $nev;
+    public $jelszo;
+
     function __construct()
     {
         $this->csatlakozas = new mysqli("localhost", "root", "", "turazas");
+    }
+    function test(){
+        return "asd";
     }
     function Login($nev, $jelszo)
     {
@@ -25,6 +31,7 @@ class Belepes
             $_SESSION["id"] = $adat["id"];
             $_SESSION["profilkep"] = $adat["user_kep_id"];
             header("Location: ./");
+            return true;
         } else {
             echo '<script type="text/javascript">
 
@@ -38,6 +45,7 @@ class Belepes
                     })
                     </script>
                     ';
+                    return false;            
         }
     }
 }
@@ -140,11 +148,8 @@ class Turak
             print $adat["megye_nev"];
         }
     }
-    function EgyTuraKiiratas($turaId){
-        
-        }
-    }
-class Megye
+}
+    class Megye
 {
     public mysqli $csatlakozas;
     function __construct()
@@ -337,7 +342,6 @@ class AdminFelulet
             if($adat = $turakiir->fetch_assoc())
             {
                 print("Már van ilyen tura név!");
-               
             }
             else
             {
