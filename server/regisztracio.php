@@ -29,6 +29,24 @@
                     <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name = "jelszocska2">
                     <label for="floatingPassword">Jelszó újra:</label>
                 </div>
+                <h2>Felhasználói kép:</h2>
+                <div class="form-floating">
+                <select name='pfp2'>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                </select>
+                    <table>
+                        <tr>
+                            <td><img src="../kepek/profilKepek/1.jpg" class="pfp"></td>
+                            <td><img src="../kepek/profilKepek/2.jpg" class="pfp"></td>
+                        </tr> 
+                        <tr>
+                        <td><img src="../kepek/profilKepek/3.jpg" class="pfp"></td>
+                        <td><img src="../kepek/profilKepek/4.jpg" class="pfp"></td>
+                        </tr>
+                    </table>   
                 <p class="mt-5 mb-3 text-muted">&copy; 2023–2028</p>
                 </form>
                 <form action="" method="post">
@@ -45,7 +63,23 @@
             {
                 if(isset($_POST["nev2"])&&isset($_POST["jelszocska"])&&isset($_POST["jelszocska2"]))
                 {
+<<<<<<< Updated upstream
                     $regiszt ->Regist($_POST["nev2"],$_POST["jelszocska"],$_POST["jelszocska2"]);
+=======
+                    echo '<script type="text/javascript">
+
+                    $(document).ready(function(){
+                    
+                        Swal.fire(
+                            "Sikeres Regisztráció!",
+                            "Jelentkezzen be!",
+                            "success"
+                        )
+                    })
+                    </script>
+                    ';
+                    $regiszt ->Regist($_POST["nev2"],$_POST["jelszocska"],$_POST["jelszocska2"],$_POST["pfp2"]);
+>>>>>>> Stashed changes
                 }
                 else{
                     print("Valamelyik adat hiányos kérem töltse ki rendesen");

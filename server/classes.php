@@ -9,8 +9,13 @@ class Belepes
     }
     function Login($nev, $jelszo)
     {
+<<<<<<< Updated upstream
 
         $belepes = $this->csatlakozas->query("SELECT * from felhasznalok where nev = '" . $nev . "' and jelszo = '" . $jelszo . "' ");
+=======
+        $belepes = $this->csatlakozas->query("SELECT * from felhasznalok
+         where nev = '" . $nev . "' and jelszo = '" . $jelszo . "' ");
+>>>>>>> Stashed changes
         if ($adat = $belepes->fetch_assoc()) {
             $_SESSION["nev"] = $adat['nev'];
             $_SESSION["id"] = $adat["id"];
@@ -29,17 +34,54 @@ class Regisztralas
         $this->csatlakozas = new mysqli("localhost", "root", "", "turazas");
     }
 
-    function Regist($nev, $jelszo, $jelszo2)
+    function Regist($nev, $jelszo, $jelszo2,$pfp)
     {
 
         $nevcheck = $this->csatlakozas->query("SELECT * from felhasznalok where nev = '" . $nev . "'");
         if ($adat = $nevcheck->fetch_assoc()) {
+<<<<<<< Updated upstream
             print("Sikeretlen a regisztrálás már van ilyen felhasználó!");
         } else {
             if ($jelszo == $jelszo2) {
                 $regiszralas = $this->csatlakozas->query("INSERT INTO felhasznalok (nev,jelszo) values('" . $nev . "','" . $jelszo . "')");
             } else {
                 print("Sikeretlen a regisztrálás, nem egyezik meg a két jelszó!");
+=======
+            echo '<script type="text/javascript">
+
+                    $(document).ready(function(){
+                    
+                        Swal.fire(
+                            "Már van ilyen felhasználó!",
+                            "Regisztráljon másik névvel!",
+                            "error"
+                        )
+                    })
+                    </script>
+                    ';
+        }
+        
+            else {
+                if ($jelszo == $jelszo2) 
+                {
+                    $regiszralas = $this->csatlakozas->query("INSERT INTO felhasznalok (nev,jelszo, user_kep_id) 
+                    values('" .$nev. "','" .$jelszo. "', '".$pfp."')");
+                } else
+                 {
+                    echo '<script type="text/javascript">
+    
+                        $(document).ready(function(){
+                        
+                            Swal.fire(
+                                "Nem egyezik meg a két jelszó!!",
+                                "Próbálja újra!",
+                                "error"
+                            )
+                        })
+                        </script>
+                        ';
+    
+>>>>>>> Stashed changes
                 print("<form action='' method='post'>
                    <button type='submit' name='kilep'>Kilépés</button></form>");
             }
@@ -384,9 +426,11 @@ class AdminFelulet
 
         function ProfilKiiras()
         {
-            $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok where nev =  '".$_SESSION["nev"]."'");
+            $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok
+             where nev =  '".$_SESSION["nev"]."'");
             if($adat = $felhasznalokiiras->fetch_assoc())
             {
+<<<<<<< Updated upstream
             
                print("<form action='' method='post'>
                <input type='text' name='nev3' value=".$adat['nev']."><br>
@@ -397,19 +441,66 @@ class AdminFelulet
                 </select>
                <button type='submit'  name = 'profilszerkesztes'>Szereksztés</button>
                </form>");
+=======
+               print '
+               <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Profil szerkesztése</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <form action = "" method = "post">
+                    <label for = "nev3">Név:</label>
+                    <li class="list-group-item"><input type="text" name="nev3" value="'.$adat["nev"].'"></li>
+                    <label for = "jelszo3">Jelszó:</label>
+                    <li class="list-group-item"><input type="text" name="jelszo3" value="'.$adat["jelszo"].'"></li>
+                    <label for = "kepek4">Profilkép:</label>
+                    <li class="list-group-item">
+                        <select name="kepek4">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </li>
+                    <li class="list-group-item">
+                        <button type="submit"  name = "profilszerkesztes" class = "btn btn-primary">Szerkesztés</button>
+                    </li>
+                </form>
+             </ul>
+             </div>
+               ';
+>>>>>>> Stashed changes
             }
         }
         function ProfilUpdate($nev,$jelszo,$kepid)
         {
-            $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok where nev = '".$nev."' and id != '".$_SESSION["id"]."' ");
+            $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok 
+            where nev = '".$nev."' and id != '".$_SESSION["id"]."' ");
             if($adat = $felhasznalokiiras->fetch_assoc())
             {
                print("Már van ilyen felhasználó név");
             }
             else
             {
+<<<<<<< Updated upstream
                 print("siker");
                 $felhasznaloJavitás = $this->csatlakozas->query("UPDATE felhasznalok SET nev = '".$nev."', jelszo = '".$jelszo."' , user_kep_id = '".$kepid."' WHERE id = '".$_SESSION["id"]."'");
+=======
+                echo '<script type="text/javascript">
+
+                $(document).ready(function(){
+                
+                    Swal.fire(
+                        "Sikeres Feltöltés!",
+                        "",
+                        "success"
+                      )
+                })
+                </script>
+                ';
+                $felhasznaloJavitás = $this->csatlakozas->query("UPDATE felhasznalok SET
+                 nev = '".$nev."', jelszo = '".$jelszo."' , user_kep_id = '".$kepid."' WHERE id = '".$_SESSION["id"]."'");
+>>>>>>> Stashed changes
             }
         }
     }
