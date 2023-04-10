@@ -24,7 +24,8 @@ class Belepes
     }
     function Login($nev, $jelszo)
     {
-        $belepes = $this->csatlakozas->query("SELECT * from felhasznalok where nev = '" . $nev . "' and jelszo = '" . $jelszo . "' ");
+        $belepes = $this->csatlakozas->query("SELECT * from felhasznalok
+         where nev = '" . $nev . "' and jelszo = '" . $jelszo . "' ");
         if ($adat = $belepes->fetch_assoc()) {
             $_SESSION["nev"] = $adat['nev'];
             
@@ -58,7 +59,7 @@ class Regisztralas
         $this->csatlakozas = new mysqli("localhost", "root", "", "turazas");
     }
 
-    function Regist($nev, $jelszo, $jelszo2)
+    function Regist($nev, $jelszo, $jelszo2,$pfp)
     {
 
         $nevcheck = $this->csatlakozas->query("SELECT * from felhasznalok where nev = '" . $nev . "'");
@@ -76,24 +77,27 @@ class Regisztralas
                     </script>
                     ';
         }
-         else {
-            if ($jelszo == $jelszo2) 
-            {
-                $regiszralas = $this->csatlakozas->query("INSERT INTO felhasznalok (nev,jelszo, user_kep_id) values('" .$nev. "','" .$jelszo. "', 1)");
-            } else
-             {
-                echo '<script type="text/javascript">
-
-                    $(document).ready(function(){
-                    
-                        Swal.fire(
-                            "Nem egyezik meg a két jelszó!!",
-                            "Próbálja újra!",
-                            "error"
-                        )
-                    })
-                    </script>
-                    ';
+        
+            else {
+                if ($jelszo == $jelszo2) 
+                {
+                    $regiszralas = $this->csatlakozas->query("INSERT INTO felhasznalok (nev,jelszo, user_kep_id) 
+                    values('" .$nev. "','" .$jelszo. "', '".$pfp."')");
+                } else
+                 {
+                    echo '<script type="text/javascript">
+    
+                        $(document).ready(function(){
+                        
+                            Swal.fire(
+                                "Nem egyezik meg a két jelszó!!",
+                                "Próbálja újra!",
+                                "error"
+                            )
+                        })
+                        </script>
+                        ';
+    
                 print("<form action='' method='post'>
                    <button type='submit' name='kilep'>Kilépés</button></form>");
             }
@@ -493,7 +497,8 @@ class AdminFelulet
 
         function ProfilKiiras()
         {
-            $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok where nev =  '".$_SESSION["nev"]."'");
+            $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok
+             where nev =  '".$_SESSION["nev"]."'");
             if($adat = $felhasznalokiiras->fetch_assoc())
             {
                print '
@@ -512,6 +517,8 @@ class AdminFelulet
                         <select name="kepek4">
                             <option value="1">1</option>
                             <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
                         </select>
                     </li>
                     <li class="list-group-item">
@@ -525,7 +532,8 @@ class AdminFelulet
         }
         function ProfilUpdate($nev,$jelszo,$kepid)
         {
-            $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok where nev = '".$nev."' and id != '".$_SESSION["id"]."' ");
+            $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok 
+            where nev = '".$nev."' and id != '".$_SESSION["id"]."' ");
             if($adat = $felhasznalokiiras->fetch_assoc())
             {
                 echo '<script type="text/javascript">
@@ -555,7 +563,8 @@ class AdminFelulet
                 })
                 </script>
                 ';
-                $felhasznaloJavitás = $this->csatlakozas->query("UPDATE felhasznalok SET nev = '".$nev."', jelszo = '".$jelszo."' , user_kep_id = '".$kepid."' WHERE id = '".$_SESSION["id"]."'");
+                $felhasznaloJavitás = $this->csatlakozas->query("UPDATE felhasznalok SET
+                 nev = '".$nev."', jelszo = '".$jelszo."' , user_kep_id = '".$kepid."' WHERE id = '".$_SESSION["id"]."'");
             }
         }
         function TuraMentes($mentettTura){
