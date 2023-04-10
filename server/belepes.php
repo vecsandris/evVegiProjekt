@@ -1,17 +1,10 @@
 <?php
+    session_start();
     include("classes.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Belépés</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="shortcut icon" href="../kepek/profilkepek/logo.png" type="image/x-icon">
-</head>
+<?php include("../components/header.php")?>
 <body>
             <main class="form-signin w-100 m-auto text-center">
                 <form action = "" method = "post">
@@ -31,6 +24,7 @@
                 <form action="" method="post">
                 <button class="w-100 btn btn-lg btn-primary" type="submit" name = "regiszt">Regisztráció</button>
                 </form>
+                <a href = "../frontend/fooldal.php" class = "btn btn-info">Vissza a főoldalra</a>
           </main>
           <?php
             //regisztráció
@@ -47,7 +41,18 @@
                 $belepes ->Login($_POST["nev"],$_POST["jelszo"]);
                 }
                 else{
-                    print("Valamelyik adat hiányos kérem töltse ki rendesen");
+                    echo '<script type="text/javascript">
+
+                    $(document).ready(function(){
+                    
+                        Swal.fire(
+                            "Nem megfelelő adatokkal próbál belépni!",
+                            "Próbálja újra!",
+                            "error"
+                        )
+                    })
+                    </script>
+                    ';
                 }
             }
             //belépés után
@@ -55,6 +60,8 @@
                 header("location: ../frontend/fooldal.php");
             }
           ?>
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>
