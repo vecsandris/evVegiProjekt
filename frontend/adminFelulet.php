@@ -140,7 +140,7 @@ if(isset($_POST["felhasznalohozzaadas"]))
     if(isset($_POST["turaadd"]))
     {
       $adminlekeres = new AdminFelulet();
-      $adminlekeres->TuraHozaadass($_POST["turanev1"],$_POST["turahossz1"],$_POST["turanehez1"],$_POST["turafel1"],$_POST["megyeid1"],$_POST["tura_kep"]);
+      $adminlekeres->TuraHozaadass($_POST["turanev1"],$_POST["turahossz1"],$_POST["turanehez1"],$_POST["turafel1"],$_POST["megyeid1"],$_POST["tura_kep"],$_POST["tura_szoveg"]);
 
     }
     if(isset($_POST["hozzaadas"]))
