@@ -601,7 +601,7 @@ class AdminFelulet
         function MentettTuraKiiras(){
             $turaMentett = $this->csatlakozas->query("SELECT *,felhasznalok_tura.id AS torlesId FROM felhasznalok_tura INNER JOIN turak ON felhasznalok_tura.tura_id = turak.id WHERE felhasznalok_tura.felhasznalo_id = ".$_SESSION["id"]."");
             while($adat = $turaMentett->fetch_assoc()){
-                print '<li style = "list-style:none;"><a href = "../server/torles.php?id='.$adat["torlesId"].'" class = "btn btn-danger m-2"><i class="bi bi-x"></i></a>'.$adat["tura_nev"].'</li>';
+                print '<li style = "list-style:none;"><a href = "../server/torles.php?id='.$adat["torlesId"].'" class = "btn btn-danger m-2"><i class="bi bi-x"></i></a><a href = "turaLeiras.php?tura_id='.$adat["id"].'">'.$adat["tura_nev"].'</a></li>';
             }
         }
         function TuraTorles($id){
