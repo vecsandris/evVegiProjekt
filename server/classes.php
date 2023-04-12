@@ -339,9 +339,8 @@ class AdminFelulet
             }
             print($tartalom);
         }
-        function TuraHozaadass($turanev,$turahossz,$turanehez,$turafelkap,$megye_id,$kepnev)
+        function TuraHozaadass($turanev,$turahossz,$turanehez,$turafelkap,$megye_id,$kepnev,$turaszoveg)
         {
-            
             $turakiir=$this->csatlakozas->query("SELECT * from turak where tura_nev = '".$turanev."'");
             if($adat = $turakiir->fetch_assoc())
             {
@@ -351,8 +350,16 @@ class AdminFelulet
             {
                 
                 $turahozaadas = $this->csatlakozas->query("INSERT INTO turak (tura_nev,tura_hossza,tura_nehezseg,tura_felkapottsag,megye_id,tura_kep_nev) 
-                values('" . $turanev . "','" . $turahossz . "','".$turanehez."','".$turafelkap."','".$megye_id."','".$kepnev."')");
-                move_uploaded_file($_FILES["kep"]["tmp_name"], "../kepektura/".$_FILES["kep"]["name"]);
+                values('" . $turanev . "','" . $turahossz . "','".$turanehez."','".$turafelkap."','".$megye_id."','".$kepnev."')");  
+                $turakiiras = $this->csatlakozas->query("SELECT * from  turak");
+                $db = 0;
+                while($adat = $turakiiras->fetch_assoc())
+                {
+                    $db = $adat["id"];
+                }
+                $leirashozaadas = $this->csatlakozas->query("INSERT INTO tura_leiras (tura_szoveg,tura_id) 
+                values('" . $turaszoveg . "','".$db."')");    
+                move_uploaded_file($_FILES["kep"]["tmp_name"], "../kepektura/".$_FILES["kep"]["name"]);     
                 print("siker");
             }
             
@@ -360,9 +367,9 @@ class AdminFelulet
         function Turak()
         {
             $tartalom = '';
-            $turakiiras = $this->csatlakozas->query("SELECT *, SUBSTRING(tura_leiras.tura_szoveg, 1, 200) AS vagott FROM tura_leiras INNER JOIN turak ON tura_leiras.id=turak.id");
+            $turakiiras = $this->csatlakozas->query("SELECT *, SUBSTRING(tura_leiras.tura_szoveg, 1, 200) AS vagott FROM turak INNER JOIN tura_leiras ON turak.id=tura_leiras.id");
             print
-            '<form action="" method="post">
+            '<form action="" method="post" >
             <button type="submit"  name="turahozaadas" class = "btn btn-primary">Tura hozzáadás</button>
             </form>';
             if(isset($_POST["turahozaadas"]))
@@ -371,7 +378,7 @@ class AdminFelulet
                 <div class="col-sm-4 p-3">
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
-                            <form action = "" method = "post">
+                            <form action = "" method = "post" enctype="multipart/form-data">
                             <label>Túra neve:</label>
                             <input type="text" name="turanev1">
                             <label>Túra hossza:</label>
@@ -382,6 +389,8 @@ class AdminFelulet
                             <input type="number" name="turafel1">
                             <label>Megye id:</label>
                             <input type="number" name="megyeid1">
+                            <label>Tura leirása:</label>
+                            <input type="text" name="tura_szoveg"><br/>
                             <label>Kép neve:</label>
                             <input type="text" name="tura_kep"><br/>
                             <label>Kép fájl:</label>
