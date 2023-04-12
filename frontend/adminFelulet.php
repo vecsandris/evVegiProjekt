@@ -101,6 +101,8 @@ if(isset($_POST["felhasznalohozzaadas"]))
               <select name="kepek2">
                 <option value="1">1</option>
                 <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
               </select>
               </div>
               <button type="submit"  name = "hozzaadas" class = "btn btn-primary">Hozzáadás</button>
@@ -135,12 +137,14 @@ if(isset($_POST["felhasznalohozzaadas"]))
     if(isset($_POST["szerkesztestura"]))
     {
         $adminlekeres = new AdminFelulet();
-        $adminlekeres->TuraUpdate($_POST["turanev"],$_POST["turahossz"],$_POST["turanehez"],$_POST["turafel"],$_POST["megyeid"]);
+        $adminlekeres->TuraUpdate($_POST["turanev"],$_POST["turahossz"],
+        $_POST["turanehez"],$_POST["turafel"],$_POST["megyeid"]);
     }
     if(isset($_POST["turaadd"]))
     {
       $adminlekeres = new AdminFelulet();
-      $adminlekeres->TuraHozaadass($_POST["turanev1"],$_POST["turahossz1"],$_POST["turanehez1"],$_POST["turafel1"],$_POST["megyeid1"],$_POST["tura_kep"],$_POST["tura_szoveg"]);
+      $adminlekeres->TuraHozaadass($_POST["turanev1"],$_POST["turahossz1"],
+      $_POST["turanehez1"],$_POST["turafel1"],$_POST["megyeid1"],$_POST["tura_kep"],$_POST["tura_szoveg"]);
 
     }
     if(isset($_POST["hozzaadas"]))

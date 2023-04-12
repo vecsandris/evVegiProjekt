@@ -239,7 +239,18 @@ class AdminFelulet
             $nevcheck=$this->csatlakozas->query("SELECT * from felhasznalok where nev = '".$nev."'");
             if($adat = $nevcheck->fetch_assoc())
             {
+                echo '<script type="text/javascript">
 
+                $(document).ready(function(){
+                
+                    Swal.fire(
+                        "Már van ilyen felhasználónév!",
+                        "Adjon meg másik nevet!",
+                        "error"
+                    )
+                })
+                </script>
+                ';
             }
             else
             {
@@ -255,7 +266,8 @@ class AdminFelulet
                 })
                 </script>
                 ';
-                $felhasznaloJavitás = $this->csatlakozas->query("INSERT INTO felhasznalok(nev,jelszo,user_kep_id) Values('".$nev."','".$jelszo."','".$kepid."')");
+                $felhasznaloJavitás = $this->csatlakozas->query("INSERT INTO felhasznalok(nev,jelszo,user_kep_id)
+                 Values('".$nev."','".$jelszo."','".$kepid."')");
             }
 
         }
@@ -266,7 +278,8 @@ class AdminFelulet
 
         function FelhasznaloUpdate($nev,$jelszo,$kepid)
         {
-            $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok where nev = '".$nev."' and id != '".$_GET["userid"]."' ");
+            $felhasznalokiiras=$this->csatlakozas->query("SELECT * from felhasznalok 
+            where nev = '".$nev."' and id != '".$_GET["userid"]."' ");
             if($adat = $felhasznalokiiras->fetch_assoc())
             {
                 if(isset($_POST["szerkesztes"])){
@@ -301,7 +314,8 @@ class AdminFelulet
                     ';
                 }
                 
-                $felhasznaloJavitás = $this->csatlakozas->query("UPDATE felhasznalok SET nev = '".$nev."', jelszo = '".$jelszo."' , user_kep_id = '".$kepid."' WHERE id = '".$_GET['userid']."'");
+                $felhasznaloJavitás = $this->csatlakozas->query("UPDATE felhasznalok SET nev = 
+                '".$nev."', jelszo = '".$jelszo."' , user_kep_id = '".$kepid."' WHERE id = '".$_GET['userid']."'");
                 $_SESSION["nev"] = $nev;
             }
         }
@@ -360,14 +374,15 @@ class AdminFelulet
                 $leirashozaadas = $this->csatlakozas->query("INSERT INTO tura_leiras (tura_szoveg,tura_id) 
                 values('" . $turaszoveg . "','".$db."')");    
                 move_uploaded_file($_FILES["kep"]["tmp_name"], "../kepektura/".$_FILES["kep"]["name"]);     
-                print("siker");
+                
             }
             
         }
         function Turak()
         {
             $tartalom = '';
-            $turakiiras = $this->csatlakozas->query("SELECT *, SUBSTRING(tura_leiras.tura_szoveg, 1, 200) AS vagott FROM turak INNER JOIN tura_leiras ON turak.id=tura_leiras.id");
+            $turakiiras = $this->csatlakozas->query("SELECT *, SUBSTRING(tura_leiras.tura_szoveg, 1, 200)
+             AS vagott FROM turak INNER JOIN tura_leiras ON turak.id=tura_leiras.id");
             print
             '<form action="" method="post" >
             <button type="submit"  name="turahozaadas" class = "btn btn-primary">Tura hozzáadás</button>
@@ -402,7 +417,7 @@ class AdminFelulet
                 </div>
                 ';
                 
-            }
+            }       
             while($adat = $turakiiras->fetch_assoc())
             {
                 $tartalom .= '
@@ -420,6 +435,7 @@ class AdminFelulet
         
             }
             print($tartalom);
+        
 
         }
         function TuraSzerkesztes()

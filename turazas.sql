@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 6.0.0-dev+20230323.7514e75794
 -- https://www.phpmyadmin.net/
 --
--- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Már 27. 14:57
--- Kiszolgáló verziója: 10.4.14-MariaDB
--- PHP verzió: 7.4.11
+-- Host: 127.0.0.1
+-- Generation Time: Apr 12, 2023 at 09:53 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Adatbázis: `turazas`
+-- Database: `turazas`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `felhasznalok`
+-- Table structure for table `felhasznalok`
 --
 
 CREATE TABLE `felhasznalok` (
@@ -35,17 +35,17 @@ CREATE TABLE `felhasznalok` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- A tábla adatainak kiíratása `felhasznalok`
+-- Dumping data for table `felhasznalok`
 --
 
 INSERT INTO `felhasznalok` (`id`, `nev`, `jelszo`, `user_kep_id`) VALUES
 (1, 'admin', 'admin', '1'),
-(8, 'asd', 'ísyadSADASD', '1');
+(22, 'Márk', '123', '3');
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `felhasznalok_tura`
+-- Table structure for table `felhasznalok_tura`
 --
 
 CREATE TABLE `felhasznalok_tura` (
@@ -54,10 +54,18 @@ CREATE TABLE `felhasznalok_tura` (
   `tura_id` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `felhasznalok_tura`
+--
+
+INSERT INTO `felhasznalok_tura` (`id`, `felhasznalo_id`, `tura_id`) VALUES
+(3, 22, '16'),
+(4, 22, '19');
+
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `megye`
+-- Table structure for table `megye`
 --
 
 CREATE TABLE `megye` (
@@ -69,7 +77,7 @@ CREATE TABLE `megye` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- A tábla adatainak kiíratása `megye`
+-- Dumping data for table `megye`
 --
 
 INSERT INTO `megye` (`id`, `megye_nev`, `turak_szama`, `megye_felkapottsag`, `megye_kep_nev`) VALUES
@@ -96,7 +104,7 @@ INSERT INTO `megye` (`id`, `megye_nev`, `turak_szama`, `megye_felkapottsag`, `me
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `megye_leiras`
+-- Table structure for table `megye_leiras`
 --
 
 CREATE TABLE `megye_leiras` (
@@ -106,7 +114,7 @@ CREATE TABLE `megye_leiras` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- A tábla adatainak kiíratása `megye_leiras`
+-- Dumping data for table `megye_leiras`
 --
 
 INSERT INTO `megye_leiras` (`id`, `megye_szoveg`, `megye_id`) VALUES
@@ -133,7 +141,7 @@ INSERT INTO `megye_leiras` (`id`, `megye_szoveg`, `megye_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `turak`
+-- Table structure for table `turak`
 --
 
 CREATE TABLE `turak` (
@@ -147,7 +155,7 @@ CREATE TABLE `turak` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- A tábla adatainak kiíratása `turak`
+-- Dumping data for table `turak`
 --
 
 INSERT INTO `turak` (`id`, `tura_nev`, `tura_hossza`, `tura_nehezseg`, `tura_felkapottsag`, `megye_id`, `tura_kep_nev`) VALUES
@@ -212,7 +220,7 @@ INSERT INTO `turak` (`id`, `tura_nev`, `tura_hossza`, `tura_nehezseg`, `tura_fel
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `tura_leiras`
+-- Table structure for table `tura_leiras`
 --
 
 CREATE TABLE `tura_leiras` (
@@ -222,7 +230,7 @@ CREATE TABLE `tura_leiras` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- A tábla adatainak kiíratása `tura_leiras`
+-- Dumping data for table `tura_leiras`
 --
 
 INSERT INTO `tura_leiras` (`id`, `tura_szoveg`, `tura_id`) VALUES
@@ -285,81 +293,81 @@ INSERT INTO `tura_leiras` (`id`, `tura_szoveg`, `tura_id`) VALUES
 (59, 'A vízfolyást Aranyoskút néven egy 1381-es oklevél említi először. A török kort idéző húsvéti határjárás alkalmával a város polgárai itt szusszantak egyet. 1972-ben merült fel, hogy hivatalosan is védett természeti értékké nyilvánítják a területet. Az Aranyoslapi forrás lett Zalaegerszeg legelső helyi jelentőségű természetvédelmi területe 1974-ben, később országos védettségűvé vált.', 58);
 
 --
--- Indexek a kiírt táblákhoz
+-- Indexes for dumped tables
 --
 
 --
--- A tábla indexei `felhasznalok`
+-- Indexes for table `felhasznalok`
 --
 ALTER TABLE `felhasznalok`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `felhasznalok_tura`
+-- Indexes for table `felhasznalok_tura`
 --
 ALTER TABLE `felhasznalok_tura`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `megye`
+-- Indexes for table `megye`
 --
 ALTER TABLE `megye`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `megye_leiras`
+-- Indexes for table `megye_leiras`
 --
 ALTER TABLE `megye_leiras`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `turak`
+-- Indexes for table `turak`
 --
 ALTER TABLE `turak`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `tura_leiras`
+-- Indexes for table `tura_leiras`
 --
 ALTER TABLE `tura_leiras`
   ADD PRIMARY KEY (`id`);
 
 --
--- A kiírt táblák AUTO_INCREMENT értéke
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT a táblához `felhasznalok`
+-- AUTO_INCREMENT for table `felhasznalok`
 --
 ALTER TABLE `felhasznalok`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT a táblához `felhasznalok_tura`
+-- AUTO_INCREMENT for table `felhasznalok_tura`
 --
 ALTER TABLE `felhasznalok_tura`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT a táblához `megye`
+-- AUTO_INCREMENT for table `megye`
 --
 ALTER TABLE `megye`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT a táblához `megye_leiras`
+-- AUTO_INCREMENT for table `megye_leiras`
 --
 ALTER TABLE `megye_leiras`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT a táblához `turak`
+-- AUTO_INCREMENT for table `turak`
 --
 ALTER TABLE `turak`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
--- AUTO_INCREMENT a táblához `tura_leiras`
+-- AUTO_INCREMENT for table `tura_leiras`
 --
 ALTER TABLE `tura_leiras`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
